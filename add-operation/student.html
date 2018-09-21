@@ -228,7 +228,7 @@
                 <div class="card">
                     <div class="card-header">
                         Add
-                        <strong> Faculty </strong>
+                        <strong> Student </strong>
                     </div>
                     <div class="card-body card-block">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -237,7 +237,7 @@
                                     <label class=" form-control-label">Role</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <p class="form-control-static">Faculty</p>
+                                    <p class="form-control-static">Student</p>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -260,10 +260,28 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label">Division</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="text-input" name="text-input" placeholder="Enter Division" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Fees</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="number" id="text-input" name="text-input" placeholder="Fees" class="form-control">
+                                    <small class="help-block text-muted">Please enter yearly fees</small>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -275,13 +293,14 @@
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
+                            
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Salary</label>
+                                    <label for="cc-exp" class="control-label mb-1">Date of Joining</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Salary" class="form-control">
-                                    <small class="help-block text-muted">Please enter monthly Salary</small>
+                                    <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter date of joining" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                             <div class="row form-group">
