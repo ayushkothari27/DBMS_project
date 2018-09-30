@@ -130,8 +130,43 @@
                   </div>
               </div>
         </header>
-        <img src="images/college.jpg" style="height:608px;width:100% ;margin-top:-6px">
-        </div> <!-- .content -->
+        <!-- <img src="images/college.jpg" style="height:608px;width:100% ;margin-top:-6px"> -->
+    
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "college";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$sql = "SELECT * from Student";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        // echo "id: " .$row["sapid"]. 
+        // " <br> Name: " . $row["name"]. 
+        // " <br> Address:  " . $row["address"]. 
+        // " <br> Phone:  " . $row["mobile"].
+        // "<br>gender: ".$row["gender"].
+        // "<br>dept: ".$row["dept"].
+        // "<br>age: ".$row["age"].
+        // "<br>dob: ".$row["dob"]
+        // ;
+        echo "id: " .$row["sapid"]. 
+        " <br> Year of joining: " . $row["year_of_joining"] ;
+    }
+} else {
+    echo "0 results";
+}
+?>    
+    </div> <!-- .content -->
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
@@ -170,3 +205,4 @@
 
 </body>
 </html>
+
