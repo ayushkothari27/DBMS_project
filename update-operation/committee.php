@@ -54,7 +54,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="">
-                        <a href="../index.html">
+                        <a href="../index.php">
                             <i class="menu-icon fa fa-dashboard"></i>Home </a>
                     </li>
                     <h3 class="menu-title">Operations</h3>
@@ -65,23 +65,23 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li class="active">
                                 <i class="fa fa-puzzle-piece"></i>
-                                <a href="./faculty.html">Faculty</a>
+                                <a href="../add-operation/faculty.php">Faculty</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-badge"></i>
-                                <a href="./student.html">Student</a>
+                                <a href="../add-operation/student.php">Student</a>
                             </li>
                             <li>
                                 <i class="fa fa-bars"></i>
-                                <a href="./committee.html">Committee</a>
+                                <a href="../add-operation/committee.php">Committee</a>
                             </li>
                             <li>
                                 <i class="fa fa-share-square-o"></i>
-                                <a href="./events.html">Events</a>
+                                <a href="../add-operation/events.php">Events</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-card-o"></i>
-                                <a href="./seminarhall.html">Seminar Hall</a>
+                                <a href="../add-operation/seminarhall.php">Seminar Hall</a>
                             </li>
                         </ul>
                     </li>
@@ -91,23 +91,23 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li>
                                 <i class="fa fa-puzzle-piece"></i>
-                                <a href="#">Faculty</a>
+                                <a href="../read-operation/faculty.php">Faculty</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-badge"></i>
-                                <a href="#">Student</a>
+                                <a href="../read-operation/student.php">Student</a>
                             </li>
                             <li>
                                 <i class="fa fa-bars"></i>
-                                <a href="#">Committee</a>
+                                <a href="../read-operation/committee.php">Committee</a>
                             </li>
                             <li>
                                 <i class="fa fa-share-square-o"></i>
-                                <a href="#">Events</a>
+                                <a href="../read-operation/events.php">Events</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-card-o"></i>
-                                <a href="#">Seminar Hall</a>
+                                <a href="../read-operation/seminarhall.php">Seminar Hall</a>
                             </li>
                         </ul>
                     </li>
@@ -117,23 +117,23 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li>
                                 <i class="fa fa-puzzle-piece"></i>
-                                <a href="#">Faculty</a>
+                                <a href="./faculty.php">Faculty</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-badge"></i>
-                                <a href="#">Student</a>
+                                <a href="./student.php">Student</a>
                             </li>
                             <li>
                                 <i class="fa fa-bars"></i>
-                                <a href="#">Committee</a>
+                                <a href="./committee.php">Committee</a>
                             </li>
                             <li>
                                 <i class="fa fa-share-square-o"></i>
-                                <a href="#">Events</a>
+                                <a href="./events.php">Events</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-card-o"></i>
-                                <a href="#">Seminar Hall</a>
+                                <a href="./seminarhall.php">Seminar Hall</a>
                             </li>
                         </ul>
                     </li>
@@ -141,28 +141,29 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="menu-icon fa fa-trash"></i>Delete</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li>
+                        <li>
                                 <i class="fa fa-puzzle-piece"></i>
-                                <a href="#">Faculty</a>
+                                <a href="../delete-operation/faculty.php">Faculty</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-badge"></i>
-                                <a href="#">Student</a>
+                                <a href="../delete-operation/student.php">Student</a>
                             </li>
                             <li>
                                 <i class="fa fa-bars"></i>
-                                <a href="#">Committee</a>
+                                <a href="../delete-operation/committee.php">Committee</a>
                             </li>
                             <li>
                                 <i class="fa fa-share-square-o"></i>
-                                <a href="#">Events</a>
+                                <a href="../delete-operation/events.php">Events</a>
                             </li>
                             <li>
                                 <i class="fa fa-id-card-o"></i>
-                                <a href="#">Seminar Hall</a>
+                                <a href="../delete-operation/seminarhall.php">Seminar Hall</a>
                             </li>
                         </ul>
                     </li>
+
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -221,66 +222,6 @@
                 </div>
             </div>
         </header>
-        <div style="padding:20px;"></div>
-        <div class="row" style="margin:auto;">
-            <div class="col-md-3"></div>
-            <div class=" col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Add
-                        <strong> Committee </strong>
-                    </div>
-                    <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label class=" form-control-label">Role</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <p class="form-control-static">Committee</p>
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Name</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Name" class="form-control">
-                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Description</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Description" class="form-control">
-                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Mobile No.</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Mobile No." class="form-control">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    <i class="fa fa-dot-circle-o"></i> Add
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- .content -->
