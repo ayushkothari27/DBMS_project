@@ -208,7 +208,37 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
+<?php
+    include '../db_connection.php';
+    
+    $conn = OpenCon();
+    if(isset($_POST['add'])){
+        echo $_POST['name'];
+        echo $_POST['description'];
+        echo $_POST['mobile'];
+        $a =  $_POST['name'];
+        $b =  $_POST['description'];
+        $c =  $_POST['mobile'];
+        $sql = "INSERT INTO committee VALUES ('$a','$b','$c')";
+        $incharge = 0;
 
+        
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        // $sisi = 'sisi';
+        // $stmt = $conn->prepare($sql);
+        // $stmt->bind_param($sisi, $_POST['name'], $incharge, $_POST['description'], $_POST['mobile']);
+        // $stmt->execute();
+        // echo "New records created successfully";
+
+        // $stmt->close();
+    }
+    CloseCon($conn);
+?>                         
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
 
@@ -230,8 +260,9 @@
                         Add
                         <strong> Committee </strong>
                     </div>
+                    <form action="committee.php" method="post" class="form-horizontal">
                     <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                       
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -245,7 +276,7 @@
                                     <label for="text-input" class=" form-control-label">Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Name" class="form-control">
+                                    <input type="text" id="text-input" name="name" placeholder="Name" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -254,7 +285,7 @@
                                     <label for="text-input" class=" form-control-label">Description</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Description" class="form-control">
+                                    <input type="text" id="text-input" name="description" placeholder="Description" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -263,21 +294,22 @@
                                     <label for="text-input" class=" form-control-label">Mobile No.</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Mobile No." class="form-control">
+                                    <input type="number" id="text-input" name="mobile" placeholder="Mobile No." class="form-control">
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" name="add" class="btn btn-primary btn-block">
                                     <i class="fa fa-dot-circle-o"></i> Add
                                 </button>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

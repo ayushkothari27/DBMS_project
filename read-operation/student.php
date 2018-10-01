@@ -224,7 +224,7 @@
                         include '../db_connection.php';
  
                         $conn = OpenCon();
-                        $sql = "SELECT * from person";
+                        $sql = "SELECT * from person NATURAL JOIN student";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -236,7 +236,8 @@
                                 "<br>gender: ".$row["gender"].
                                 "<br>dept: ".$row["dept"].
                                 "<br>age: ".$row["age"].
-                                "<br>dob: ".$row["dob"]
+                                "<br>dob: ".$row["dob"].
+                                " <br> Year of joining: " . $row["year_of_joining"] 
                                 ;
                                 // echo "id: " .$row["sapid"]. 
                                 // " <br> Year of joining: " . $row["year_of_joining"] ;
