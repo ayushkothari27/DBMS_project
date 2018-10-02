@@ -125,15 +125,16 @@
 
               <div class="header-menu">
 
-                  <div class="col-sm-7">
+                  <div class="col-sm-7 fix">
                       <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                   </div>
+                  <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
               </div>
         </header>
          <img src="images/college.jpg" style="height:608px;width:100% ;margin-top:-6px">
 
     </div> <!-- .content -->
-    </div><!-- /#right-panel -->
+    <!-- /#right-panel -->
 
     <!-- Right Panel -->
 

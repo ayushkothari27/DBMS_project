@@ -215,7 +215,7 @@
 
             <div class="header-menu">
 
-                <div class="col-sm-7">
+                <div class="col-sm-7 fix">
                   <?php
                           include '../db_connection.php';
 
@@ -240,12 +240,13 @@
                         <i class="fa fa fa-tasks"></i>
                     </a> -->
                 </div>
+                <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
 
     </div>
     <!-- .content -->
-    </div>
+    
     <!-- /#right-panel -->
 
     <!-- Right Panel -->
