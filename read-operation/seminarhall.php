@@ -216,9 +216,29 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left">
+                  <?php
+                          include '../db_connection.php';
+
+                          $conn = OpenCon();
+                          $sql = "SELECT * from seminarhall";
+                          $result = $conn->query($sql);
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              while($row = $result->fetch_assoc()) {
+                                  echo "Location: " .$row["Locations"].
+                                  " <br> Opening Time: " . $row["opening_time"].
+                                  " <br> Closing Time:  " . $row["closing_time"]
+                                  ;
+                                  // echo "id: " .$row["sapid"].
+                                  // " <br> Year of joining: " . $row["year_of_joining"] ;
+                              }
+                          } else {
+                              echo "0 results";
+                          }
+                      ?>
+                    <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </header>

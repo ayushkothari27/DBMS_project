@@ -218,34 +218,65 @@
                 <div class="col-sm-7">
                     <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
-                        
+
                     </a> -->
                     <?php
                         include '../db_connection.php';
- 
+
                         $conn = OpenCon();
-                        $sql = "SELECT * from person NATURAL JOIN student";
+                        echo "Current <br>";
+                        $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN current";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
                             while($row = $result->fetch_assoc()) {
-                                echo "id: " .$row["sapid"]. 
-                                " <br> Name: " . $row["name"]. 
-                                " <br> Address:  " . $row["address"]. 
+                                echo "id: " .$row["sapid"].
+                                " <br> Name: " . $row["name"].
+                                " <br> Address:  " . $row["address"].
                                 " <br> Phone:  " . $row["mobile"].
                                 "<br>gender: ".$row["gender"].
                                 "<br>dept: ".$row["dept"].
                                 "<br>age: ".$row["age"].
                                 "<br>dob: ".$row["dob"].
-                                " <br> Year of joining: " . $row["year_of_joining"] 
+                                "<br> Year of joining: " . $row["year_of_joining"].
+                                "<br> Fees: ". $row["fees"].
+                                "<br> Division: ". $row["division"]
                                 ;
-                                // echo "id: " .$row["sapid"]. 
+                                echo "<br>";
+                                // echo "id: " .$row["sapid"].
                                 // " <br> Year of joining: " . $row["year_of_joining"] ;
                             }
                         } else {
                             echo "0 results";
                         }
-                    ?> 
+                        echo "Alumni <br>";
+                        $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN alumni";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "id: " .$row["sapid"].
+                                " <br> Name: " . $row["name"].
+                                " <br> Address:  " . $row["address"].
+                                " <br> Phone:  " . $row["mobile"].
+                                "<br>gender: ".$row["gender"].
+                                "<br>dept: ".$row["dept"].
+                                "<br>age: ".$row["age"].
+                                "<br>dob: ".$row["dob"].
+                                "<br> Year of joining: " . $row["year_of_joining"].
+                                "<br> Year of passing: ". $row["year_of_passing"]
+                                ;
+                                echo "<br>";
+                                // echo "id: " .$row["sapid"].
+                                // " <br> Year of joining: " . $row["year_of_joining"] ;
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                    ?>
+                    <!-- <a id="menuToggle" class="menutoggle pull-left">
+                        <i class="fa fa fa-tasks"></i>
+                    </a> -->
                 </div>
             </div>
         </header>

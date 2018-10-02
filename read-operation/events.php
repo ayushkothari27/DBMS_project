@@ -216,9 +216,31 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left">
+                  <?php
+                          include '../db_connection.php';
+
+                          $conn = OpenCon();
+                          $sql = "SELECT c.name as c_name,e.name as e_name,e.time,e.date,e.location FROM events AS e INNER JOIN committee AS c ON e.committee = c.name";
+                          $result = $conn->query($sql);
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              while($row = $result->fetch_assoc()) {
+                                  echo "Event: " .$row["e_name"].
+                                  " <br> Committee: " . $row["c_name"].
+                                  " <br> Time:  " . $row["time"].
+                                  " <br> Date:  " . $row["date"].
+                                  " <br> Location:  " . $row["location"]
+                                  ;
+                                  // echo "id: " .$row["sapid"].
+                                  // " <br> Year of joining: " . $row["year_of_joining"] ;
+                              }
+                          } else {
+                              echo "0 results";
+                          }
+                      ?>
+                    <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </header>
