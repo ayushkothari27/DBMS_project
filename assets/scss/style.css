@@ -10,6 +10,24 @@
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Tags: html, themplate, Sufee-Admin
 --------------------------------------------------------- */
+/*Top Header*/
+#header{
+    /*background-color: #994d00;*/
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#994d00), to(#cc6600));background-image: linear-gradient(to right, #994d00, #ff8000);
+    color: #ffffff;
+}
+
+.top-header{
+    text-align: center;
+    vertical-align: middle;
+    margin: 0px;
+    padding: 0px;
+}
+
+.fix{
+    float: none !important;
+}
+
 /* Bootstrap */
 @import url(../css/animate.css);
 .gaugejs-wrap {
