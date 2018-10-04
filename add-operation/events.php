@@ -208,6 +208,37 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
+    <?php
+        include '../db_connection.php';
+
+        $conn = OpenCon();
+        if(isset($_POST['add'])){
+            $name =  $_POST['event'];
+            $loc =  $_POST['location'];
+            $date =  $_POST['date'];
+            $time =  $_POST['time'];
+            $committee =  $_POST['committee'];
+            $sql = "INSERT INTO events VALUES ('$name','$bdate','$time','$location','$committee')";
+
+
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            // $sisi = 'sisi';
+            // $stmt = $conn->prepare($sql);
+            // $stmt->bind_param($sisi, $_POST['name'], $incharge, $_POST['description'], $_POST['mobile']);
+            // $stmt->execute();
+            // echo "New records created successfully";
+
+            // $stmt->close();
+        }
+        CloseCon($conn);
+    ?>
+
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
@@ -232,7 +263,7 @@
                         <strong> Event </strong>
                     </div>
                     <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="events.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -246,7 +277,7 @@
                                     <label for="text-input" class=" form-control-label">Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Name" class="form-control">
+                                    <input type="text" id="text-input" name="event" placeholder="Name" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -255,7 +286,7 @@
                                     <label for="cc-exp" class="control-label mb-1">Date</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <input id="cc-exp" name="date" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
                                     <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
@@ -264,7 +295,7 @@
                                     <label for="text-input" class=" form-control-label">Time</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Time" class="form-control">
+                                    <input type="time" id="text-input" name="time" placeholder="Time" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -273,29 +304,41 @@
                                     <label for="text-input" class=" form-control-label">Location</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Location" class="form-control">
+                                    <input type="number" id="text-input" name="location" placeholder="Location" class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="text-input" class=" form-control-label">Committee</label>
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Committee" class="form-control">
+                                <select id="text-input" name="committee">
+                                    <option value = ""></option>
+                                  <?php
+                                  include '../db_connection.php';
+                                  $conn = OpenCon();
+                                  $sql = "SELECT * FROM committee";
+                                  $result = mysqli_query($con, $sql);
+                                    while($row = mysqli_fetch_array($result)) {
+                                      echo '<option value='.$row['name'].'>'.$row['name'].'</option>';
+                                    }
+                                    CloseCon($conn);
+                                  ?>
+                                </select>
+                                <!-- <div class="col-12 col-md-9">
+                                    <input type="number" id="text-input" name="committee" placeholder="Committee" class="form-control">
+                                </div> -->
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6" style="text-align: center;">
+                                        <button type="submit" name="add" class="btn btn-primary btn-block">
+                                            <i class="fa fa-dot-circle-o"></i> Add
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-
                         </form>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    <i class="fa fa-dot-circle-o"></i> Add
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -303,7 +346,7 @@
 
     </div>
     <!-- .content -->
-    
+
     <!-- /#right-panel -->
 
     <!-- Right Panel -->

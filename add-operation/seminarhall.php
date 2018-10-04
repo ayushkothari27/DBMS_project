@@ -208,6 +208,35 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
+    <?php
+        include '../db_connection.php';
+
+        $conn = OpenCon();
+        if(isset($_POST['add'])){
+            $a =  $_POST['loaction'];
+            $b =  $_POST['open'];
+            $c =  $_POST['close'];
+            $sql = "INSERT INTO seminarhall VALUES ('$a','$b','$c')";
+            $incharge = 0;
+
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            // $sisi = 'sisi';
+            // $stmt = $conn->prepare($sql);
+            // $stmt->bind_param($sisi, $_POST['name'], $incharge, $_POST['description'], $_POST['mobile']);
+            // $stmt->execute();
+            // echo "New records created successfully";
+
+            // $stmt->close();
+        }
+        CloseCon($conn);
+    ?>
+
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
@@ -232,7 +261,7 @@
                         <strong> Seminar Hall </strong>
                     </div>
                     <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="seminarhall.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -246,7 +275,7 @@
                                     <label for="text-input" class=" form-control-label">Location</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Location" class="form-control">
+                                    <input type="text" id="text-input" name="loc" placeholder="Location" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -255,7 +284,7 @@
                                     <label for="text-input" class=" form-control-label">Opening Time</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Opening Time in HH:mm:ss" class="form-control">
+                                    <input type="time" id="text-input" name="open" placeholder="Opening Time in HH:mm:ss" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -264,29 +293,29 @@
                                     <label for="text-input" class=" form-control-label">Closing Time</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Closing Time in HH:mm:ss" class="form-control">
+                                    <input type="time" id="text-input" name="close" placeholder="Closing Time in HH:mm:ss" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" name="add" class="btn btn-primary btn-block">
                                     <i class="fa fa-dot-circle-o"></i> Add
                                 </button>
                             </div>
                         </div>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
 
     </div>
     <!-- .content -->
-    
+
     <!-- /#right-panel -->
 
     <!-- Right Panel -->
