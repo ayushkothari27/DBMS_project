@@ -214,11 +214,11 @@
         $conn = OpenCon();
         if(isset($_POST['add'])){
             $name =  $_POST['event'];
-            $loc =  $_POST['location'];
+            $location =  $_POST['location'];
             $date =  $_POST['date'];
             $time =  $_POST['time'];
             $committee =  $_POST['committee'];
-            $sql = "INSERT INTO events VALUES ('$name','$bdate','$time','$location','$committee')";
+            $sql = "INSERT INTO events VALUES ('$committee','$name','$date','$time','$location')";
 
 
 
@@ -304,7 +304,7 @@
                                     <label for="text-input" class=" form-control-label">Location</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="location" placeholder="Location" class="form-control">
+                                    <input type="text" id="text-input" name="location" placeholder="Location" class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -314,14 +314,16 @@
                                 <select id="text-input" name="committee">
                                     <option value = ""></option>
                                   <?php
-                                  include '../db_connection.php';
-                                  $conn = OpenCon();
-                                  $sql = "SELECT * FROM committee";
-                                  $result = mysqli_query($con, $sql);
+                                  //include '../db_connection.php';
+                                  //$conn = OpenCon();
+                                  $sql = "SELECT name FROM committee";
+                                  $result = mysqli_query($conn, $sql);
+                                    echo "<select name='name'>";
                                     while($row = mysqli_fetch_array($result)) {
-                                      echo '<option value='.$row['name'].'>'.$row['name'].'</option>';
+                                      echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
                                     }
-                                    CloseCon($conn);
+                                    echo "</select>"
+                                    //CloseCon($conn);
                                   ?>
                                 </select>
                                 <!-- <div class="col-12 col-md-9">

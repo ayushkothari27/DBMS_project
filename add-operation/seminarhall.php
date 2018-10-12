@@ -213,7 +213,7 @@
 
         $conn = OpenCon();
         if(isset($_POST['add'])){
-            $a =  $_POST['loaction'];
+            $a =  $_POST['location'];
             $b =  $_POST['open'];
             $c =  $_POST['close'];
             $sql = "INSERT INTO seminarhall VALUES ('$a','$b','$c')";
@@ -260,8 +260,8 @@
                         Add
                         <strong> Seminar Hall </strong>
                     </div>
+                    <form action="seminarhall.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="card-body card-block">
-                        <form action="seminarhall.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -275,7 +275,7 @@
                                     <label for="text-input" class=" form-control-label">Location</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="loc" placeholder="Location" class="form-control">
+                                    <input type="text" id="text-input" name="location" placeholder="Location" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>

@@ -217,10 +217,10 @@
         echo $_POST['description'];
         echo $_POST['mobile'];
         $a =  $_POST['name'];
+        $d =  $_POST['incharge'];
         $b =  $_POST['description'];
         $c =  $_POST['mobile'];
-        $sql = "INSERT INTO committee VALUES ('$a','$b','$c')";
-        $incharge = 0;
+        $sql = "INSERT INTO committee VALUES ('$a','$d','$b','$c')";
 
         
         if ($conn->query($sql) === TRUE) {
@@ -279,6 +279,15 @@
                                 <div class="col-12 col-md-9">
                                     <input type="text" id="text-input" name="name" placeholder="Name" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Faculty Incharge</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="text-input" name="incharge" placeholder="Incharge" class="form-control">
+                                    
                                 </div>
                             </div>
                             <div class="row form-group">
