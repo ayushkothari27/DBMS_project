@@ -212,40 +212,51 @@
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
-
             <div class="header-menu">
-
                 <div class="col-sm-7 fix">
-                  <?php
+                    <a id="menuToggle" class="menutoggle pull-left">
+                        <i class="fa fa fa-tasks"></i>
+                    </a>
+                </div>
+                <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
+            </div>
+        </header>
+        <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                
+                    <?php
                           include '../db_connection.php';
 
                           $conn = OpenCon();
                           $sql = "SELECT c.name as c_name,e.name as e_name,e.time,e.date,e.location FROM events AS e INNER JOIN committee AS c ON e.committee = c.name";
                           $result = $conn->query($sql);
+                          echo "<table border='1' style='margin:10px;'>
+                                <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                                <th>Committee</th>
+                                </tr>";
+
                           if ($result->num_rows > 0) {
                               // output data of each row
                               while($row = $result->fetch_assoc()) {
-                                  echo "Event: " .$row["e_name"].
-                                  " <br> Committee: " . $row["c_name"].
-                                  " <br> Time:  " . $row["time"].
-                                  " <br> Date:  " . $row["date"].
-                                  " <br> Location:  " . $row["location"]
-                                  ;
-                                  // echo "id: " .$row["sapid"].
-                                  // " <br> Year of joining: " . $row["year_of_joining"] ;
+                                echo "<tr>";
+                                echo "<td>" .$row["e_name"]. "</td>";
+                                echo "<td>" . $row["date"]. "</td>";
+                                echo "<td>" . $row["time"]. "</td>";
+                                echo "<td>" . $row["location"]. "</td>";
+                                echo "<td>" . $row["c_name"]. "</td>";
+                                echo "</tr>";
                               }
                           } else {
                               echo "0 results";
                           }
+                          echo "</table>";
+                          CloseCon($conn);
                       ?>
-                    <!-- <a id="menuToggle" class="menutoggle pull-left">
-                        <i class="fa fa fa-tasks"></i>
-                    </a> -->
-                </div>
-                <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
-        </header>
-
     </div>
     <!-- .content -->
     

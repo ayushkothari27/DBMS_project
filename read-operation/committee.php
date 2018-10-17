@@ -212,39 +212,49 @@
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
-
             <div class="header-menu">
-
                 <div class="col-sm-7 fix">
-                  <?php
-                          include '../db_connection.php';
-
-                          $conn = OpenCon();
-                          $sql = "SELECT c.name as c_name,p.name as p_name,c.description,c.number FROM committee AS c INNER JOIN person AS p ON c.incharge = p.sapid";
-                          $result = $conn->query($sql);
-                          if ($result->num_rows > 0) {
-                              // output data of each row
-                              while($row = $result->fetch_assoc()) {
-                                  echo "Name: " .$row["c_name"].
-                                  " <br> Incharge: " . $row["p_name"].
-                                  " <br> Description:  " . $row["description"].
-                                  " <br> Phone:  " . $row["number"]
-                                  ;
-                                  // echo "id: " .$row["sapid"].
-                                  // " <br> Year of joining: " . $row["year_of_joining"] ;
-                              }
-                          } else {
-                              echo "0 results";
-                          }
-                      ?>
-                      <!-- <a id="menuToggle" class="menutoggle pull-left">
-                          <i class="fa fa fa-tasks"></i>
-                      </a> -->
+                    <a id="menuToggle" class="menutoggle pull-left">
+                        <i class="fa fa fa-tasks"></i>
+                    </a>
                 </div>
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
+        <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                
+                    <?php
+                          include '../db_connection.php';
 
+                          $conn = OpenCon();
+                          $sql = "SELECT * FROM committee";
+                          $result = $conn->query($sql);
+                          echo "<table border='1' style='margin:10px;'>
+                                <tr>
+                                <th>Committee Name</th>
+                                <th>Incharge</th>
+                                <th>Description</th>
+                                <th>Number</th>
+                                </tr>";
+
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" .$row["name"]. "</td>";
+                                echo "<td>" . $row["incharge"]. "</td>";
+                                echo "<td>" . $row["description"]. "</td>";
+                                echo "<td>" . $row["number"]. "</td>";
+                                echo "</tr>";
+                              }
+                          } else {
+                              echo "0 results";
+                          }
+                          echo "</table>";
+                          CloseCon($conn);
+                    ?>
+            </div>
     </div>
     <!-- .content -->
     

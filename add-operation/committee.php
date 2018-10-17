@@ -221,21 +221,11 @@
         $b =  $_POST['description'];
         $c =  $_POST['mobile'];
         $sql = "INSERT INTO committee VALUES ('$a','$d','$b','$c')";
-
-        
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-
-        // $sisi = 'sisi';
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bind_param($sisi, $_POST['name'], $incharge, $_POST['description'], $_POST['mobile']);
-        // $stmt->execute();
-        // echo "New records created successfully";
-
-        // $stmt->close();
     }
     CloseCon($conn);
 ?>                         

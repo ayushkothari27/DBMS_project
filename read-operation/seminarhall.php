@@ -212,38 +212,44 @@
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
-
             <div class="header-menu">
-
                 <div class="col-sm-7 fix">
-                  <?php
-                          include '../db_connection.php';
-
-                          $conn = OpenCon();
-                          $sql = "SELECT * from seminarhall";
-                          $result = $conn->query($sql);
-                          if ($result->num_rows > 0) {
-                              // output data of each row
-                              while($row = $result->fetch_assoc()) {
-                                  echo "Location: " .$row["Locations"].
-                                  " <br> Opening Time: " . $row["opening_time"].
-                                  " <br> Closing Time:  " . $row["closing_time"]
-                                  ;
-                                  // echo "id: " .$row["sapid"].
-                                  // " <br> Year of joining: " . $row["year_of_joining"] ;
-                              }
-                          } else {
-                              echo "0 results";
-                          }
-                      ?>
-                    <!-- <a id="menuToggle" class="menutoggle pull-left">
+                    <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
-                    </a> -->
+                    </a>
                 </div>
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
-
+        <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                    <?php
+                          include '../db_connection.php';
+                          $conn = OpenCon();
+                          $sql = "SELECT * FROM seminarhall";
+                          $result = $conn->query($sql);
+                          echo "<table border='1' style='margin:10px;'>
+                                <tr>
+                                <th>Location</th>
+                                <th>Opening Time</th>
+                                <th>Closing Time</th>
+                                </tr>";
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" .$row["Location"]. "</td>";
+                                echo "<td>" . $row["opening_time"]. "</td>";
+                                echo "<td>" . $row["closing_time"]. "</td>";
+                                echo "</tr>";
+                              }
+                          } else {
+                              echo "0 results";
+                          }
+                          echo "</table>";
+                          CloseCon($conn);
+                    ?>
+            </div>
     </div>
     <!-- .content -->
     

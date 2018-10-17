@@ -210,11 +210,25 @@
 
     <!-- Right Panel -->
 
+    <?php
+    include '../db_connection.php';
+    
+    $conn = OpenCon();
+    if(isset($_POST['add'])){
+        $a =  $_POST['events'];
+        $sql = "DELETE FROM `events` WHERE name='$a'";
+        if ($conn->query($sql) === TRUE) {
+            echo "Deleted successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    CloseCon($conn);
+    ?>
+
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
-
             <div class="header-menu">
-
                 <div class="col-sm-7 fix">
                     <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
@@ -223,13 +237,61 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
+        <div style="padding:20px;"></div>
+        <div class="row" style="margin:auto;">
+            <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Delete
+                        <strong> Event </strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="events.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Role</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <p class="form-control-static">Events</p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Event Name</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                  <?php
+                                  $conn = OpenCon();
+                                  $sql = "SELECT name FROM events;";
+                                  $result = mysqli_query($conn, $sql);
+                                    echo '<select id="text-input" name="events" class="form-control">';
+                                    echo '<option disabled selected value>Select Committee to delete</option>';
+                                    while($row = mysqli_fetch_array($result)) {
+                                      echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+                                    }
+                                    echo "</select>";
+                                    CloseCon($conn);
+                                  ?>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6" style="text-align: center;">
+                                        <button type="submit" name="add" class="btn btn-primary btn-block">
+                                            <i class="fa fa-dot-circle-o"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-    <!-- .content -->
-    </div>
-    <!-- /#right-panel -->
-
-    <!-- Right Panel -->
 
     <script src="../assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

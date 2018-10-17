@@ -210,7 +210,6 @@
     <!-- Right Panel -->
     <?php
         include '../db_connection.php';
-
         $conn = OpenCon();
         if(isset($_POST['add'])){
             $name =  $_POST['event'];
@@ -219,32 +218,17 @@
             $time =  $_POST['time'];
             $committee =  $_POST['committee'];
             $sql = "INSERT INTO events VALUES ('$committee','$name','$date','$time','$location')";
-
-
-
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
-            // $sisi = 'sisi';
-            // $stmt = $conn->prepare($sql);
-            // $stmt->bind_param($sisi, $_POST['name'], $incharge, $_POST['description'], $_POST['mobile']);
-            // $stmt->execute();
-            // echo "New records created successfully";
-
-            // $stmt->close();
         }
         CloseCon($conn);
     ?>
-
-
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
-
             <div class="header-menu">
-
                 <div class="col-sm-7 fix">
                     <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
@@ -311,21 +295,39 @@
                                 <div class="col col-md-3">
                                     <label for="text-input" class=" form-control-label">Committee</label>
                                 </div>
-                                <select id="text-input" name="committee">
-                                    <option value = ""></option>
-                                  <?php
-                                  //include '../db_connection.php';
+                                <!--<select id="text-input" name="committee">-->
+                                    <!--<option value = ""></option>-->
+                                  <!--<?php
+                                  //include '../db_connection.php/';
                                   //$conn = OpenCon();
-                                  $sql = "SELECT name FROM committee";
+                                  //$sql = "SELECT name FROM committee;";
+                                  //$result = mysqli_query($conn, $sql);
+                                    //echo "<select name='name'>";
+                                    //while($row = mysqli_fetch_array($result)) {
+                                    //  echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+                                    //}
+                                    //echo "</select>";
+                                    //CloseCon($conn);
+                                  ?>-->
+                                <!--</select>-->
+                                <!--start-->
+                                <!--<select id="text-input" name="committee">-->
+                                    <!--<option value = ""></option>-->
+                                <div class="col-12 col-md-9">
+                                  <?php
+                                  $conn = OpenCon();
+                                  $sql = "SELECT name FROM committee;";
                                   $result = mysqli_query($conn, $sql);
-                                    echo "<select name='name'>";
+                                    echo '<select id="text-input" name="committee" class="form-control">';
+                                    echo '<option disabled selected value>Select Committee</option>';
                                     while($row = mysqli_fetch_array($result)) {
                                       echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
                                     }
-                                    echo "</select>"
-                                    //CloseCon($conn);
+                                    echo "</select>";
+                                    CloseCon($conn);
                                   ?>
-                                </select>
+                              </div>
+                                <!--</select>-->
                                 <!-- <div class="col-12 col-md-9">
                                     <input type="number" id="text-input" name="committee" placeholder="Committee" class="form-control">
                                 </div> -->
