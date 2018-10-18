@@ -27,16 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `alumni` (
-  `sapid` int(11) NOT NULL,
+  `sapid` bigint(11) NOT NULL,
   `year_of_passing` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `alumni`
 --
-
-INSERT INTO `alumni` (`sapid`, `year_of_passing`) VALUES
-(2004160051, '2018-10-02');
 
 -- --------------------------------------------------------
 
@@ -46,7 +42,7 @@ INSERT INTO `alumni` (`sapid`, `year_of_passing`) VALUES
 
 CREATE TABLE `committee` (
   `name` varchar(30) NOT NULL,
-  `incharge` int(15) NOT NULL,
+  `incharge` bigint(11) NOT NULL,
   `description` varchar(100) NOT NULL,
   `number` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -55,9 +51,6 @@ CREATE TABLE `committee` (
 -- Dumping data for table `committee`
 --
 
-INSERT INTO `committee` (`name`, `incharge`, `description`, `number`) VALUES
-('Unicode', 3333, 'WEB based projects', 23012922);
-
 -- --------------------------------------------------------
 
 --
@@ -65,7 +58,7 @@ INSERT INTO `committee` (`name`, `incharge`, `description`, `number`) VALUES
 --
 
 CREATE TABLE `current` (
-  `sapid` int(11) NOT NULL,
+  `sapid` bigint(11) NOT NULL,
   `fees` float NOT NULL,
   `division` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -74,8 +67,6 @@ CREATE TABLE `current` (
 -- Dumping data for table `current`
 --
 
-INSERT INTO `current` (`sapid`, `fees`, `division`) VALUES
-(1, 213, 'A');
 
 -- --------------------------------------------------------
 
@@ -87,8 +78,8 @@ CREATE TABLE `events` (
   `committee` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `date` date NOT NULL,
-  `time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ;
+  `time` time(6) DEFAULT '00:00:00.000000'
+)  ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -97,16 +88,13 @@ CREATE TABLE `events` (
 --
 
 CREATE TABLE `faculty` (
-  `sapid` int(11) NOT NULL,
+  `sapid` bigint(11) NOT NULL,
   `salary` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `faculty`
 --
-
-INSERT INTO `faculty` (`sapid`, `salary`) VALUES
-(3333, 123123000);
 
 -- --------------------------------------------------------
 
@@ -115,7 +103,7 @@ INSERT INTO `faculty` (`sapid`, `salary`) VALUES
 --
 
 CREATE TABLE `person` (
-  `sapid` int(11) NOT NULL,
+  `sapid` bigint(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `dob` date NOT NULL,
@@ -129,10 +117,6 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`sapid`, `name`, `gender`, `dob`, `mobile`, `address`, `dept`, `age`) VALUES
-(1, 'Purvil', 'Male', '2018-09-11', 100, '221B Baker Street', 'Computer', 20),
-(3333, 'Prof Pranit', 'male', '2018-10-01', 21312312, 'DJ', 'Computer', 12),
-(2004160051, 'Ayush Kothari', 'male', '2018-02-04', 2020776239, '5 road yemen', 'Computer', 14);
 
 -- --------------------------------------------------------
 
@@ -150,9 +134,6 @@ CREATE TABLE `seminarhall` (
 -- Dumping data for table `seminarhall`
 --
 
-INSERT INTO `seminarhall` (`Location`, `opening_time`, `closing_time`) VALUES
-('', '00:20:00.000000', '09:50:00.000000');
-
 -- --------------------------------------------------------
 
 --
@@ -160,17 +141,13 @@ INSERT INTO `seminarhall` (`Location`, `opening_time`, `closing_time`) VALUES
 --
 
 CREATE TABLE `student` (
-  `sapid` int(11) NOT NULL,
+  `sapid` bigint(11) NOT NULL,
   `year_of_joining` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
-
-INSERT INTO `student` (`sapid`, `year_of_joining`) VALUES
-(1, '2016-05-09'),
-(2004160051, '2018-10-11');
 
 --
 -- Indexes for dumped tables
