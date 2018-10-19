@@ -234,7 +234,7 @@
               <?php
                     include '../db_connection.php';
                     $conn = OpenCon();
-                    $sql = "SELECT * FROM seminarhall";
+                    $sql = "SELECT * FROM committee";
                     $result = $conn->query($sql);
                     echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px;width:100%;\">
                           <div class=\"table100-head\">
@@ -312,24 +312,7 @@
             });
         })(jQuery);
     </script>
-    <script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
-  	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
-  	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
-  	<script src="../read_tables/vendor/select2/select2.min.js"></script>
-  	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-  	<script>
-  		$('.js-pscroll').each(function(){
-  			var ps = new PerfectScrollbar(this);
 
-  			$(window).on('resize', function(){
-  				ps.update();
-  			})
-  		});
-
-
-  	</script>
-  <!--===============================================================================================-->
-  	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>
