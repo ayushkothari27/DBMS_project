@@ -224,23 +224,36 @@
             <div class="header-menu">
 
                 <div class="col-sm-7 fix">
-                    <!-- <a id="menuToggle" class="menutoggle pull-left">
+                    <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
 
-                    </a> -->
+                    </a>
+                </div>
+                <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
+            </div>
+        </header>
+
+        <div class="col-md-12"></div>
+            <div class=" col-md-12">
                     <?php
                           include '../db_connection.php';
                           $conn = OpenCon();
-                          $sql = "SELECT * FROM seminarhall";
+                          echo "Current";
+                          $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN current";
                           $result = $conn->query($sql);
                           echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
                                 <div class=\"table100-head\">
                                       <table>
                                         <thead>
                                           <tr class=\"row100 head\">
-                                            <th class=\"cell100 column1\">Location</th>
-                                            <th class=\"cell100 column1\">Opening time</th>
-                                            <th class=\"cell100 column1\">Closing time</th>
+                                            <th class=\"cell100 column2\">Name</th>
+                                            <th class=\"cell100 column2\">Id</th>
+                                            <th class=\"cell100 column2\">Phone</th>
+                                            <th class=\"cell100 column2\">Gender</th>
+                                            <th class=\"cell100 column2\">Department</th>
+                                            <th class=\"cell100 column2\">Year of joining</th>
+                                            <th class=\"cell100 column2\">Fees</th>
+                                            <th class=\"cell100 column2\">Division</th>
                                           </tr>
                                         </thead>
                                       </table>
@@ -253,9 +266,14 @@
                     							<tbody>";
                               while($row = $result->fetch_assoc()) {
                                 echo "<tr class=\"row100 body\">";
-                                echo "<td class=\"cell100 column1\">" .$row["Location"]. "</td>";
-                                echo "<td class=\"cell100 column1\">" . $row["opening_time"]. "</td>";
-                                echo "<td class=\"cell100 column1\">" . $row["closing_time"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" .$row["name"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["sapid"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["mobile"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" .$row["gender"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["dept"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" .$row["year_of_joining"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["fees"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["division"]. "</td>";
                                 echo "</tr>";
                               }
                               echo "</tbody>
@@ -266,70 +284,56 @@
                           //     echo "0 results";
                           // }
                           echo "</div>";
+
+
+                          echo "Alumni";
+                          $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN alumni";
+                          $result = $conn->query($sql);
+                          echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
+                                <div class=\"table100-head\">
+                                      <table>
+                                        <thead>
+                                        <tr class=\"row100 head\">
+                                          <th class=\"cell100 column2\">Name</th>
+                                          <th class=\"cell100 column2\">Id</th>
+                                          <th class=\"cell100 column2\">Phone</th>
+                                          <th class=\"cell100 column2\">Gender</th>
+                                          <th class=\"cell100 column2\">Department</th>
+                                          <th class=\"cell100 column2\">Year of joining</th>
+                                          <th class=\"cell100 column2\">Year of passing</th>
+                                        </tr>
+                                        </thead>
+                                      </table>
+                                    </div>";
+
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              echo "<div class=\"table100-body js-pscroll\">
+                    						<table>
+                    							<tbody>";
+                              while($row = $result->fetch_assoc()) {
+                                echo "<tr class=\"row100 body\">";
+                                echo "<td class=\"cell100 column2\">" .$row["name"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["sapid"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["mobile"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" .$row["gender"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["dept"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" .$row["year_of_joining"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["year_of_passing"]. "</td>";
+                                echo "</tr>";
+                              }
+                              echo "</tbody>
+                        						</table>
+                        					</div>";
+                          }
+                          // else {
+                          //     echo "0 results";
+                          // }
+                          echo "</div>";
+
                           CloseCon($conn);
                     ?>
-                    
-                    <?php
-                        include '../db_connection.php';
-
-                        $conn = OpenCon();
-                        echo "Current <br>";
-                        $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN current";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "id: " .$row["sapid"].
-                                " <br> Name: " . $row["name"].
-                                " <br> Address:  " . $row["address"].
-                                " <br> Phone:  " . $row["mobile"].
-                                "<br>gender: ".$row["gender"].
-                                "<br>dept: ".$row["dept"].
-                                "<br>age: ".$row["age"].
-                                "<br>dob: ".$row["dob"].
-                                "<br> Year of joining: " . $row["year_of_joining"].
-                                "<br> Fees: ". $row["fees"].
-                                "<br> Division: ". $row["division"]
-                                ;
-                                echo "<br>";
-                                // echo "id: " .$row["sapid"].
-                                // " <br> Year of joining: " . $row["year_of_joining"] ;
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        echo "Alumni <br>";
-                        $sql = "SELECT * from person NATURAL JOIN student NATURAL JOIN alumni";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "id: " .$row["sapid"].
-                                " <br> Name: " . $row["name"].
-                                " <br> Address:  " . $row["address"].
-                                " <br> Phone:  " . $row["mobile"].
-                                "<br>gender: ".$row["gender"].
-                                "<br>dept: ".$row["dept"].
-                                "<br>age: ".$row["age"].
-                                "<br>dob: ".$row["dob"].
-                                "<br> Year of joining: " . $row["year_of_joining"].
-                                "<br> Year of passing: ". $row["year_of_passing"]
-                                ;
-                                echo "<br>";
-                                // echo "id: " .$row["sapid"].
-                                // " <br> Year of joining: " . $row["year_of_joining"] ;
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                    ?>
-                    <!-- <a id="menuToggle" class="menutoggle pull-left">
-                        <i class="fa fa fa-tasks"></i>
-                    </a> -->
-                </div>
-                <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
-        </header>
 
     </div>
     <!-- .content -->
