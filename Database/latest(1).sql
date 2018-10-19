@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2018 at 01:56 PM
+-- Generation Time: Oct 19, 2018 at 03:47 PM
 -- Server version: 5.7.23-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -109,6 +109,13 @@ CREATE TABLE `seminarhall` (
   `opening_time` time(6) NOT NULL DEFAULT '00:00:00.000000',
   `closing_time` time(6) NOT NULL DEFAULT '00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seminarhall`
+--
+
+INSERT INTO `seminarhall` (`Location`, `opening_time`, `closing_time`) VALUES
+('Room 1', '07:00:00.000000', '18:00:00.000000');
 
 -- --------------------------------------------------------
 
