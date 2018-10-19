@@ -210,7 +210,7 @@
     <!-- Right Panel -->
 <?php
     include '../db_connection.php';
-
+    
     $conn = OpenCon();
     if(isset($_POST['add'])){
         echo $_POST['name'];
@@ -228,7 +228,7 @@
         }
     }
     CloseCon($conn);
-?>
+?>                         
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
 
@@ -253,7 +253,7 @@
                     </div>
                     <form action="committee.php" method="post" class="form-horizontal">
                     <div class="card-body card-block">
-
+                       
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -277,7 +277,7 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="text" id="text-input" name="incharge" placeholder="Incharge" class="form-control">
-
+                                    
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -297,7 +297,7 @@
                                     <input type="number" id="text-input" name="mobile" placeholder="Mobile No." class="form-control">
                                 </div>
                             </div>
-
+                        
                     </div>
                     <div class="card-footer">
                         <div class="row">
@@ -316,7 +316,7 @@
 
     </div>
     <!-- .content -->
-
+    
     <!-- /#right-panel -->
 
     <!-- Right Panel -->

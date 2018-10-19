@@ -209,7 +209,21 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
-
+<?php
+    include '../db_connection.php';
+    
+    $conn = OpenCon();
+    if(isset($_POST['add'])){
+        $a =  $_POST['faculty'];
+        $sql = "DELETE FROM `faculty` WHERE sapid='$a'";
+        if ($conn->query($sql) === TRUE) {
+            echo "Deleted successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    CloseCon($conn);
+    ?>
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
 
@@ -223,7 +237,59 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
-
+        <div style="padding:20px;"></div>
+        <div class="row" style="margin:auto;">
+            <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Delete
+                        <strong> Faculty </strong>
+                    </div>
+                    <form action="faculty.php" method="post" class="form-horizontal">
+                    <div class="card-body card-block">
+                       
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Role</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <p class="form-control-static">Faculty</p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Faculty</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                  <?php
+                                  $conn = OpenCon();
+                                  $sql = "SELECT sapid from faculty;";
+                                  $result = mysqli_query($conn, $sql);
+                                    echo '<select id="text-input" name="faculty" class="form-control">';
+                                    echo '<option disabled selected value>Select faculty to delete</option>';
+                                    while($row = mysqli_fetch_array($result)) {
+                                      echo '<option value="'.$row['sapid'].'">'.$row['sapid'].'</option>';
+                                    }
+                                    echo "</select>";
+                                    CloseCon($conn);
+                                  ?>
+                                </div>
+                            </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6" style="text-align: center;">
+                                <button type="submit" name="add" class="btn btn-primary btn-block">
+                                    <i class="fa fa-dot-circle-o"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- .content -->
     
