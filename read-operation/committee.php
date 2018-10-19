@@ -234,7 +234,7 @@
               <?php
                     include '../db_connection.php';
                     $conn = OpenCon();
-                    $sql = "SELECT * FROM seminarhall";
+                    $sql = "SELECT * FROM committee";
                     $result = $conn->query($sql);
                     echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px;width:100%;\">
                           <div class=\"table100-head\">

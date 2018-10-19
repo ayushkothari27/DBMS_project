@@ -223,7 +223,153 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-6">
+                    
+                    <?php
+                        include '../db_connection.php';
 
+                        $conn = OpenCon();
+                        $sql = "SELECT * FROM committee";
+                        $result = $conn->query($sql);
+                        echo "<table border='1' style='margin:10px;'>
+                                <tr>
+                                <th>Committee Name</th>
+                                <th>Incharge</th>
+                                <th>Description</th>
+                                <th>Number</th>
+                                <th>Update</th>
+                                </tr>";
+
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                $val = $row["name"];
+                                echo "<tr>";
+                                echo "<td>" .$row["name"]. "</td>";
+                                echo "<td>" . $row["incharge"]. "</td>";
+                                echo "<td>" . $row["description"]. "</td>";
+                                echo "<td>" . $row["number"]. "</td>";
+                                // echo "<td><button class=\"btn btn-primary\" onclick=\"showForm($val)\">Update</button></td>";
+                                printf('<td><button class="btn btn-primary" onclick="showForm(\'%s\');">Update</button></td>', $val);
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        echo "</table>";
+                        // CloseCon($conn);
+                    ?>
+                </div>
+            </div>
+            <div style="padding:20px;"></div>
+        <div class="row" style="margin:auto;">
+            <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update
+                        <strong> Committee </strong>
+                    </div>
+                    <form action="committee.php" method="post" class="form-horizontal">
+                    <div class="card-body card-block">
+                       
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Role</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <p class="form-control-static">Committee</p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Name</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                <?php 
+                                        $sql = "SELECT * FROM committee";
+                                        $result = $conn->query($sql);
+                                        echo "<select class=\"form-control\" id=\"text-input\" name=\"name\">";
+                                        if ($result->num_rows > 0) {
+                                            // output data of each row
+                                            while($row = $result->fetch_assoc()) {
+                                                $val = $row["name"];
+                                                echo "<option>".$val."</option>";
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        echo "</select>";
+                                        
+                                    ?>
+                                
+                                
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Faculty Incharge</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="text-input" name="incharge" placeholder="Incharge" class="form-control">
+                                    
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Description</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <textarea type="text" id="text-input" name="description" placeholder="Description" class="form-control" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Mobile No.</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="number" id="text-input" name="mobile" placeholder="Mobile No." class="form-control">
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6" style="text-align: center;">
+                                <button type="submit" name="update" class="btn btn-primary btn-block">
+                                    <i class="fa fa-dot-circle-o"></i> Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <?php
+
+                        if(isset($_POST['update'])){
+                            $a =  $_POST['name'];
+                            $d =  $_POST['incharge'];
+                            $b =  $_POST['description'];
+                            $c =  $_POST['mobile'];
+                            $sql = "UPDATE committee SET incharge=$d, description='$b', number='$c' WHERE name='$a'";
+                            if ($conn->query($sql) === TRUE) {
+                                echo "<div class=\"alert alert-success\">
+                                <strong>Success!</strong> Record updated successfully
+                              </div>";
+                            } else {
+                                echo "<div class=\"alert alert-danger\">
+                                <strong>Error: !</strong>    " . $sql . "<br>" . $conn->error."
+                              </div>";
+                            }
+                        }
+                        CloseCon($conn);
+                    ?>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
     <!-- .content -->
     
@@ -261,6 +407,15 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+        function showForm(name) {
+            // alert(typeof(name));
+            $.ajax({
+                type: "GET",
+                url: "committee.php"
+                }).done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });    
+        }
     </script>
 
 </body>
