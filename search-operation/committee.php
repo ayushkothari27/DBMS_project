@@ -13,6 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -244,9 +252,93 @@
         </header>
         <div style="padding:20px;"></div>
         <div class="row" style="margin:auto;">
-            <div class="col-md-3"></div>
-            <div class=" col-md-6">
-              <div id='myChart'></div>
+            <div class="col-md-12"></div>
+            <div class=" col-md-12">
+
+              <?php
+              include '../db_connection.php';
+
+              $conn = OpenCon();
+              if(isset($_POST['add1'])){
+
+                  echo "<form action=\"committee.php\" method=\"post\">
+                    <table width=\"100%\" border=\"0\" style=\"border:none;\">
+                      <tr>
+                        <td><label>Name:&nbsp;</label><input type=\"text\" name=\"name\" /></td>
+                      </tr>
+                      <tr>
+                        <td><label>Incharge:&nbsp;</label><input type=\"text\" name=\"incharge\" /></td>
+                      </tr>
+                    </table>
+                    <tr><input type=\"submit\" name=\"add1\"></input></tr>
+                  </form>";
+
+                  $a =  $_POST['name'];
+                  $b =  $_POST['incharge'];
+                  $sql = "SELECT * FROM committee";
+                  $conditions = array();
+                  if(! empty($a)){
+                    $conditions[] = "name LIKE '%$a%'";
+                  }
+                  if(! empty($b)){
+                    $conditions[] = "incharge LIKE '%$b%'";
+                  }
+                  if (count($conditions) > 0) {
+                    $sql .= " WHERE " . implode(' AND ', $conditions);
+                  }
+                  $result = $conn->query($sql);
+                  echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px;width:100%;\">
+                        <div class=\"table100-head\">
+                              <table>
+                                <thead>
+                                  <tr class=\"row100 head\">
+                                    <th class=\"cell100 column1\">Committee Name</th>
+                                    <th class=\"cell100 column2\">Incharge</th>
+                                    <th class=\"cell100 column2\">Description</th>
+                                    <th class=\"cell100 column2\">Number</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>";
+
+                  if ($result->num_rows > 0) {
+                      // output data of each row
+                      echo "<div class=\"table100-body js-pscroll\">
+                        <table>
+                          <tbody>";
+                      while($row = $result->fetch_assoc()) {
+                        echo "<tr class=\"row100 body\">";
+                        echo "<td class=\"cell100 column1\">" .$row["name"]. "</td>";
+                        echo "<td class=\"cell100 column2\">" . $row["incharge"]. "</td>";
+                        echo "<td class=\"cell100 column2\">" . $row["description"]. "</td>";
+                        echo "<td class=\"cell100 column2\">" . $row["number"]. "</td>";
+                        echo "</tr>";
+                      }
+                      echo "</tbody>
+                            </table>
+                          </div>";
+                  }
+                  // else {
+                  //     echo "0 results";
+                  // }
+                  echo "</div>";
+              }
+              else{
+                echo "<form action=\"committee.php\" method=\"post\">
+                  <table width=\"100%\" border=\"0\" style=\"border:none;\">
+                    <tr>
+                      <td><label>Name:&nbsp;</label><input type=\"text\" name=\"name\" /></td>
+                    </tr>
+                    <tr>
+                      <td><label>Incharge:&nbsp;</label><input type=\"text\" name=\"incharge\" /></td>
+                    </tr>
+                  </table>
+                  <tr><input type=\"submit\" name=\"add1\"></input></tr>
+                </form>";
+              }
+              CloseCon($conn);
+              ?>
+
             </div>
         </div>
 
