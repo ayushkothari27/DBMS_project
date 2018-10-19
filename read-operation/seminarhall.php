@@ -13,6 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
+
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -209,6 +217,7 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
+    <br><br>
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
@@ -228,31 +237,45 @@
                           $conn = OpenCon();
                           $sql = "SELECT * FROM seminarhall";
                           $result = $conn->query($sql);
-                          echo "<table border='1' style='margin:10px;'>
-                                <tr>
-                                <th>Location</th>
-                                <th>Opening Time</th>
-                                <th>Closing Time</th>
-                                </tr>";
+                          echo "<div class=\"table100 ver3 m-b-110\">
+                                <div class=\"table100-head\">
+                                      <table>
+                                        <thead>
+                                          <tr class=\"row100 head\">
+                                            <th class=\"cell100 column1\">Location</th>
+                                            <th class=\"cell100 column2\">Opening time</th>
+                                            <th class=\"cell100 column3\">Closing time</th>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                    </div>";
+
                           if ($result->num_rows > 0) {
                               // output data of each row
+                              echo "<div class=\"table100-body js-pscroll\">
+                    						<table>
+                    							<tbody>";
                               while($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" .$row["Location"]. "</td>";
-                                echo "<td>" . $row["opening_time"]. "</td>";
-                                echo "<td>" . $row["closing_time"]. "</td>";
+                                echo "<tr class=\"row100 body\">";
+                                echo "<td class=\"cell100 column1\">" .$row["Location"]. "</td>";
+                                echo "<td class=\"cell100 column2\">" . $row["opening_time"]. "</td>";
+                                echo "<td class=\"cell100 column3\">" . $row["closing_time"]. "</td>";
                                 echo "</tr>";
                               }
-                          } else {
-                              echo "0 results";
+                              echo "</tbody>
+                        						</table>
+                        					</div>";
                           }
-                          echo "</table>";
+                          // else {
+                          //     echo "0 results";
+                          // }
+                          echo "</div>";
                           CloseCon($conn);
                     ?>
             </div>
     </div>
     <!-- .content -->
-    
+
     <!-- /#right-panel -->
 
     <!-- Right Panel -->
@@ -288,7 +311,24 @@
             });
         })(jQuery);
     </script>
+	<script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
+	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../read_tables/vendor/select2/select2.min.js"></script>
+	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
 
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+
+
+	</script>
+<!--===============================================================================================-->
+	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>
