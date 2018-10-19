@@ -31,7 +31,13 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
+<style type="text/css">
 
+#chart-container {
+    width: 100%;
+    height: 100%;
+}
+</style>
 <body>
 
 
@@ -244,15 +250,18 @@
         </header>
         <div style="padding:20px;"></div>
         <div class="row" style="margin:auto;">
-            <div class="col-md-3"></div>
-            <div class=" col-md-6">
-                
+            <div class="col-md-12"></div>
+            <div class=" col-md-12">
+              <div id="chart-container">
+                  <canvas id="graphCanvas"></canvas>
+              </div>
             </div>
         </div>
 
     </div>
 
     <script src="../assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/main.js"></script>
@@ -283,7 +292,55 @@
             });
         })(jQuery);
     </script>
+    <script>
+      $(document).ready(function () {
+          showGraph();
+      });
 
+
+      function showGraph()
+      {
+          {
+              console.log("hi");
+              $.post("data.php",
+              function (data)
+              {
+                  console.log(data);
+                   var name = [];
+                  var marks = [];
+                  var obj = JSON.parse(data);
+                  console.log(obj);
+                  for (var i in obj) {
+                      console.log(i);
+                      name.push(obj[i].committee);
+                      marks.push(obj[i].cnt);
+                  }
+                  console.log(name);
+                  console.log(marks);
+                  var chartdata = {
+                      labels: name,
+                      datasets: [
+                          {
+                              label: 'No of events per committee',
+                              backgroundColor: '#49e2ff',
+                              borderColor: '#46d5f1',
+                              hoverBackgroundColor: '#CCCCCC',
+                              hoverBorderColor: '#666666',
+                              data: marks
+                          }
+                      ]
+                  };
+
+                  var graphTarget = $("#graphCanvas");
+
+                  var barGraph = new Chart(graphTarget, {
+                      type: 'bar',
+                      data: chartdata
+                  });
+              });
+          }
+      }
+      </script>
 </body>
 
 </html>
