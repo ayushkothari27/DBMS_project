@@ -216,31 +216,31 @@
             <div class="header-menu">
 
                 <div class="col-sm-7 fix">
-                <?php
-                        include '../db_connection.php';
+                    <?php
+                            include '../db_connection.php';
 
-                        $conn = OpenCon();
-                        $sql = "SELECT * from person NATURAL JOIN faculty";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "id: " .$row["sapid"].
-                                " <br> Name: " . $row["name"].
-                                " <br> Address:  " . $row["address"].
-                                " <br> Phone:  " . $row["mobile"].
-                                "<br>gender: ".$row["gender"].
-                                "<br>dept: ".$row["dept"].
-                                "<br>age: ".$row["age"].
-                                "<br>dob: ".$row["dob"].
-                                " <br> Salary: " . $row["salary"]
-                                ;
-                                // echo "id: " .$row["sapid"].
-                                // " <br> Year of joining: " . $row["year_of_joining"] ;
+                            $conn = OpenCon();
+                            $sql = "SELECT * from person NATURAL JOIN faculty";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "id: " .$row["sapid"].
+                                    " <br> Name: " . $row["name"].
+                                    " <br> Address:  " . $row["address"].
+                                    " <br> Phone:  " . $row["mobile"].
+                                    "<br>gender: ".$row["gender"].
+                                    "<br>dept: ".$row["dept"].
+                                    "<br>age: ".$row["age"].
+                                    "<br>dob: ".$row["dob"].
+                                    " <br> Salary: " . $row["salary"]
+                                    ;
+                                    // echo "id: " .$row["sapid"].
+                                    // " <br> Year of joining: " . $row["year_of_joining"] ;
+                                }
+                            } else {
+                                echo "0 results";
                             }
-                        } else {
-                            echo "0 results";
-                        }
                     ?>
                     <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>

@@ -202,7 +202,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-    </aside>
+   </aside>
     <!-- /#left-panel -->
 
     <!-- Left Panel -->
