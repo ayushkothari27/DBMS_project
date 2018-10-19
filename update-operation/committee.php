@@ -231,34 +231,34 @@
                         include '../db_connection.php';
 
                         $conn = OpenCon();
-                        $sql = "SELECT * FROM committee";
-                        $result = $conn->query($sql);
-                        echo "<table border='1' style='margin:10px;'>
-                                <tr>
-                                <th>Committee Name</th>
-                                <th>Incharge</th>
-                                <th>Description</th>
-                                <th>Number</th>
-                                <th>Update</th>
-                                </tr>";
+                        // $sql = "SELECT * FROM committee";
+                        // $result = $conn->query($sql);
+                        // echo "<table border='1' style='margin:10px;'>
+                        //         <tr>
+                        //         <th>Committee Name</th>
+                        //         <th>Incharge</th>
+                        //         <th>Description</th>
+                        //         <th>Number</th>
+                        //         <th>Update</th>
+                        //         </tr>";
 
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                $val = $row["name"];
-                                echo "<tr>";
-                                echo "<td>" .$row["name"]. "</td>";
-                                echo "<td>" . $row["incharge"]. "</td>";
-                                echo "<td>" . $row["description"]. "</td>";
-                                echo "<td>" . $row["number"]. "</td>";
-                                // echo "<td><button class=\"btn btn-primary\" onclick=\"showForm($val)\">Update</button></td>";
-                                printf('<td><button class="btn btn-primary" onclick="showForm(\'%s\');">Update</button></td>', $val);
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        echo "</table>";
+                        // if ($result->num_rows > 0) {
+                        //     // output data of each row
+                        //     while($row = $result->fetch_assoc()) {
+                        //         $val = $row["name"];
+                        //         echo "<tr>";
+                        //         echo "<td>" .$row["name"]. "</td>";
+                        //         echo "<td>" . $row["incharge"]. "</td>";
+                        //         echo "<td>" . $row["description"]. "</td>";
+                        //         echo "<td>" . $row["number"]. "</td>";
+                        //         // echo "<td><button class=\"btn btn-primary\" onclick=\"showForm($val)\">Update</button></td>";
+                        //         printf('<td><button class="btn btn-primary" onclick="showForm(\'%s\');">Update</button></td>', $val);
+                        //         echo "</tr>";
+                        //     }
+                        // } else {
+                        //     echo "0 results";
+                        // }
+                        // echo "</table>";
                         // CloseCon($conn);
                     ?>
                 </div>
