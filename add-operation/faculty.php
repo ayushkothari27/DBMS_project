@@ -208,7 +208,30 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
-
+<?php
+    include '../db_connection.php';
+    
+    $conn = OpenCon();
+    if(isset($_POST['add'])){
+        $sapid =  $_POST['sap'];
+        $name =  $_POST['name'];
+        $dept =  $_POST['dept'];
+        $salary =  $_POST['salary'];
+        $gender =  $_POST['gender'];
+        $mobile = $_POST['mobile'];
+        $dob = $_POST['dob1'];
+        $address = $_POST['address'];
+        $age = 34;
+        $sql = "INSERT INTO person VALUES ('$sapid','$name','$gender','$dob','$mobile','$address','$dept','$age')";
+        $sql1 = "INSERT INTO faculty VALUES ('$sapid','$salary')";
+        if (($conn->query($sql)) && ($conn->query($sql1)) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    CloseCon($conn);
+?>
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
 
@@ -231,8 +254,8 @@
                         Add
                         <strong> Faculty </strong>
                     </div>
+                    <form action="faculty.php" method="post" class="form-horizontal">
                     <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Role</label>
@@ -246,7 +269,7 @@
                                     <label for="text-input" class=" form-control-label">SAP ID</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="SAP ID" class="form-control">
+                                    <input type="number" id="text-input" name="sap" placeholder="SAP ID" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -255,7 +278,7 @@
                                     <label for="text-input" class=" form-control-label">First Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="First Name" class="form-control">
+                                    <input type="text" id="text-input" name="name" placeholder="First Name" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -264,7 +287,7 @@
                                     <label for="text-input" class=" form-control-label">Last Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Last Name" class="form-control">
+                                    <input type="text" id="text-input" name="text-input" placeholder="Sort" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -273,7 +296,7 @@
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control">
+                                    <input type="email" id="email-input" name="email-input" placeholder="Sort" class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -281,7 +304,7 @@
                                     <label for="text-input" class=" form-control-label">Department</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Department" class="form-control">
+                                    <input type="text" id="text-input" name="dept" placeholder="Department" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -290,7 +313,7 @@
                                     <label for="text-input" class=" form-control-label">Salary</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Salary" class="form-control">
+                                    <input type="number" id="text-input" name="salary" placeholder="Salary" class="form-control">
                                     <small class="help-block text-muted">Please enter monthly Salary</small>
                                 </div>
                             </div>
@@ -299,11 +322,11 @@
                                     <label for="select" class=" form-control-label">Gender</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <select name="select" id="select" class="form-control">
-                                        <option value="0">Please select</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                        <option value="3">Other</option>
+                                    <select name="gender" id="select" class="form-control">
+                                        <option disabled="">Please select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -312,7 +335,7 @@
                                     <label for="text-input" class=" form-control-label">Mobile No.</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Mobile No." class="form-control">
+                                    <input type="number" id="text-input" name="mobile" placeholder="Mobile No." class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -320,7 +343,7 @@
                                     <label for="cc-exp" class="control-label mb-1">Date of Birth</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date of birth" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <input id="cc-exp" name="dob1" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date of birth" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
                                     <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
@@ -329,22 +352,23 @@
                                     <label for="textarea-input" class=" form-control-label">Address</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
+                                    <textarea name="address" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
                                 </div>
                             </div>
 
-                        </form>
+                        
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" name="add" class="btn btn-primary btn-block">
                                     <i class="fa fa-dot-circle-o"></i> Add
                                 </button>
                             </div>
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

@@ -223,6 +223,99 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
+        <?php
+        include '../db_connection.php';
+
+        $conn = OpenCon();
+        ?>
+        <div style="padding:20px;"></div>
+        <div class="row" style="margin:auto;">
+            <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Add
+                        <strong> Seminar Hall </strong>
+                    </div>
+                    <form action="seminarhall.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="card-body card-block">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Role</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <p class="form-control-static">Seminar Hall</p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Location</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                <?php
+                                    $sql = "SELECT Location FROM seminarhall;";
+                                    $result = mysqli_query($conn, $sql);
+                                      echo '<select id="text-input" name="location" class="form-control">';
+                                      echo '<option disabled selected value>Select Seminar Hall</option>';
+                                      while($row = mysqli_fetch_array($result)) {
+                                        echo '<option value="'.$row['Location'].'">'.$row['Location'].'</option>';
+                                      }
+                                      echo "</select>";
+                                ?>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Opening Time</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="time" id="text-input" name="open" placeholder="Opening Time in HH:mm:ss" class="form-control">
+                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Closing Time</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="time" id="text-input" name="close" placeholder="Closing Time in HH:mm:ss" class="form-control">
+                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6" style="text-align: center;">
+                                <button type="submit" name="update" class="btn btn-primary btn-block">
+                                    <i class="fa fa-dot-circle-o"></i> Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                  <?php
+
+                        if(isset($_POST['update'])){
+                            $a =  $_POST['location'];
+                            $b =  $_POST['open'];
+                            $c =  $_POST['close'];
+                            $sql = "UPDATE seminarhall SET opening_time='$b', closing_time='$c' WHERE Location='$a'";
+                            if ($conn->query($sql) === TRUE) {
+                                echo "<div class=\"alert alert-success\">
+                                <strong>Success!</strong> Record updated successfully
+                              </div>";
+                            } else {
+                                echo "<div class=\"alert alert-danger\">
+                                <strong>Error: !</strong>    " . $sql . "<br>" . $conn->error."
+                              </div>";
+                            }
+                        }
+                        CloseCon($conn);
+                    ?>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- .content -->

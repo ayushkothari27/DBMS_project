@@ -223,7 +223,151 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
+        <?php
+        include '../db_connection.php';
 
+        $conn = OpenCon();
+        ?>
+        <div style="padding:20px;"></div>
+        <div class="row" style="margin:auto;">
+            <div class="col-md-3"></div>
+            <div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update
+                        <strong> Event </strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="events.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Role</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <p class="form-control-static">Events</p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Name</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                <?php
+                                    $sql = "SELECT name FROM events";
+                                    $result = mysqli_query($conn, $sql);
+                                      echo '<select id="text-input" name="name" class="form-control">';
+                                      echo '<option disabled selected value>Select name of event</option>';
+                                      while($row = mysqli_fetch_array($result)) {
+                                        echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
+                                      }
+                                      echo "</select>";
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="cc-exp" class="control-label mb-1">Date</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input id="cc-exp" name="date" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Time</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="time" id="text-input" name="time" placeholder="Time" class="form-control">
+                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Location</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <?php
+                                    $sql = "SELECT Location FROM seminarhall;";
+                                    $result = mysqli_query($conn, $sql);
+                                      echo '<select id="text-input" name="location" class="form-control">';
+                                      echo '<option disabled selected value>Select Committee</option>';
+                                      while($row = mysqli_fetch_array($result)) {
+                                        echo '<option value="'.$row['Location'].'">'.$row['Location'].'</option>';
+                                      }
+                                      echo "</select>";
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Committee</label>
+                                </div><?php
+                                  ?>
+                                <div class="col-12 col-md-9">
+                                <?php 
+                                        
+                                        $sql = "SELECT * FROM committee";
+                                        $result = $conn->query($sql);
+                                        echo "<select class=\"form-control\" id=\"text-input\" name=\"committee\">";
+                                        if ($result->num_rows > 0) {
+                                            // output data of each row
+                                            while($row = $result->fetch_assoc()) {
+                                                $val = $row["name"];
+                                                echo "<option>".$val."</option>";
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        echo "</select>";
+                                        
+                                    ?>
+                              </div>
+                                <!--</select>-->
+                                <!-- <div class="col-12 col-md-9">
+                                    <input type="number" id="text-input" name="committee" placeholder="Committee" class="form-control">
+                                </div> -->
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6" style="text-align: center;">
+                                        <button type="submit" name="update" class="btn btn-primary btn-block">
+                                            <i class="fa fa-dot-circle-o"></i> Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <?php
+
+                        if(isset($_POST['update'])){
+                            echo $_POST['name'];
+                            echo $_POST['location'];
+                            echo $_POST['time'];
+                            echo $_POST['date'];
+                            $a =  $_POST['name'];
+                            $b =  $_POST['date'];
+                            $c =  $_POST['time'];
+                            $d =  $_POST['location'];
+                            $e =  $_POST['committee'];
+                            $sql = "UPDATE events SET date='$b', time='$c', Location='$d', committee='$e' WHERE name='$a'";
+                            if ($conn->query($sql) === TRUE) {
+                                echo "<div class=\"alert alert-success\">
+                                <strong>Success!</strong> Record updated successfully
+                              </div>";
+                            } else {
+                                echo "<div class=\"alert alert-danger\">
+                                <strong>Error: !</strong>    " . $sql . "<br>" . $conn->error."
+                              </div>";
+                            }
+                        }
+                        CloseCon($conn);
+                    ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- .content -->
     
