@@ -13,13 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
     <link rel="stylesheet" type="text/css" href="../read_tables/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../read_tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../read_tables/vendor/animate/animate.css">
     <link rel="stylesheet" type="text/css" href="../read_tables/vendor/select2/select2.min.css">
     <link rel="stylesheet" type="text/css" href="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
-    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
+
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
@@ -310,24 +311,7 @@
             });
         })(jQuery);
     </script>
-	<script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
-	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../read_tables/vendor/select2/select2.min.js"></script>
-	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
 
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-
-
-	</script>
-<!--===============================================================================================-->
-	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>
