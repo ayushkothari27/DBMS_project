@@ -235,15 +235,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row" >
-                            <div class="col-md-6">Update
-                                <strong> Current Student </strong></div>
-                            <div class="col-md-6">          
-                                <a href="alumni.php" type="button" class="btn btn-info">Update Alumni?</a>
-                            </div>
+                                <div class="col-md-6">Update
+                                    <strong> Alumni </strong></div>
+                                <div class="col-md-6">          
+                                    <a href="student.php" type="button" class="btn btn-info">Update Current student?</a>
+                                </div>
                         </div>
-                        
                     </div>
-                    
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="card-body card-block">
                             <div class="row form-group">
@@ -260,7 +258,7 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                 <?php
-                                    $sql = "SELECT sapid FROM current";
+                                    $sql = "SELECT sapid FROM alumni";
                                     $result = mysqli_query($conn, $sql);
                                       echo '<select id="text-input" name="sapid" class="form-control">';
                                       echo '<option disabled selected value>Select sapid of student</option>';
@@ -291,28 +289,10 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="email-input" class=" form-control-label">Division</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="division" placeholder="Sort" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="email" id="email-input" name="email" placeholder="Sort" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Fees</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="fees" placeholder="Sort" class="form-control">
-                                    <small class="help-block text-muted">Please enter yearly fees</small>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -345,6 +325,16 @@
                                         <option value="Female">Female</option>
                                         <option value="Other">Other</option>
                                     </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="cc-exp" class="control-label mb-1">Year of passing</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input id="cc-exp" name="yop" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your year of passing" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -391,9 +381,8 @@
                             
                             $sapid =  $_POST['sapid'];
                             $name =  $_POST['name'];
-                            $division =  $_POST['division'];
                             // $c =  $_POST['email'];
-                            $fees =  $_POST['fees'];
+                            $yop =  $_POST['yop'];
                             $dept =  $_POST['dept'];
                             $doj =  $_POST['doj'];
                             $gender =  $_POST['gender'];
@@ -402,7 +391,7 @@
                             $address =  $_POST['address'];
                             $sql = "UPDATE student SET year_of_joining='$doj' WHERE sapid=$sapid";
                             $sql2 = "UPDATE person SET name='$name', gender='$gender', dob='$dob', mobile=$mobile, address='$address', dept='$dept', age=20 WHERE sapid=$sapid";
-                            $sql3 = "UPDATE current SET fees='$fees', division='$division' WHERE sapid=$sapid";
+                            $sql3 = "UPDATE alumni SET year_of_passing='$yop' WHERE sapid=$sapid";
                             if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE && $conn->query($sql3) === TRUE) {
 
                                 echo "<div class=\"alert alert-success\">
