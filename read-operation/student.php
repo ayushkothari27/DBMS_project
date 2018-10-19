@@ -13,6 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
+
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -221,6 +229,47 @@
 
                     </a> -->
                     <?php
+                          include '../db_connection.php';
+                          $conn = OpenCon();
+                          $sql = "SELECT * FROM seminarhall";
+                          $result = $conn->query($sql);
+                          echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
+                                <div class=\"table100-head\">
+                                      <table>
+                                        <thead>
+                                          <tr class=\"row100 head\">
+                                            <th class=\"cell100 column1\">Location</th>
+                                            <th class=\"cell100 column1\">Opening time</th>
+                                            <th class=\"cell100 column1\">Closing time</th>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                    </div>";
+
+                          if ($result->num_rows > 0) {
+                              // output data of each row
+                              echo "<div class=\"table100-body js-pscroll\">
+                    						<table>
+                    							<tbody>";
+                              while($row = $result->fetch_assoc()) {
+                                echo "<tr class=\"row100 body\">";
+                                echo "<td class=\"cell100 column1\">" .$row["Location"]. "</td>";
+                                echo "<td class=\"cell100 column1\">" . $row["opening_time"]. "</td>";
+                                echo "<td class=\"cell100 column1\">" . $row["closing_time"]. "</td>";
+                                echo "</tr>";
+                              }
+                              echo "</tbody>
+                        						</table>
+                        					</div>";
+                          }
+                          // else {
+                          //     echo "0 results";
+                          // }
+                          echo "</div>";
+                          CloseCon($conn);
+                    ?>
+                    
+                    <?php
                         include '../db_connection.php';
 
                         $conn = OpenCon();
@@ -284,7 +333,7 @@
 
     </div>
     <!-- .content -->
-    
+
     <!-- /#right-panel -->
 
     <!-- Right Panel -->
@@ -320,7 +369,24 @@
             });
         })(jQuery);
     </script>
+    <script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="../read_tables/vendor/select2/select2.min.js"></script>
+  	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  	<script>
+  		$('.js-pscroll').each(function(){
+  			var ps = new PerfectScrollbar(this);
 
+  			$(window).on('resize', function(){
+  				ps.update();
+  			})
+  		});
+
+
+  	</script>
+  <!--===============================================================================================-->
+  	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>

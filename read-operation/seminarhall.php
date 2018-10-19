@@ -217,7 +217,6 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
-    <br><br>
 
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
@@ -230,21 +229,21 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
-        <div class="col-md-3"></div>
-            <div class=" col-md-6">
+        <div class="col-md-12"></div>
+            <div class=" col-md-12">
                     <?php
                           include '../db_connection.php';
                           $conn = OpenCon();
                           $sql = "SELECT * FROM seminarhall";
                           $result = $conn->query($sql);
-                          echo "<div class=\"table100 ver3 m-b-110\">
+                          echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
                                 <div class=\"table100-head\">
                                       <table>
                                         <thead>
                                           <tr class=\"row100 head\">
                                             <th class=\"cell100 column1\">Location</th>
-                                            <th class=\"cell100 column2\">Opening time</th>
-                                            <th class=\"cell100 column3\">Closing time</th>
+                                            <th class=\"cell100 column1\">Opening time</th>
+                                            <th class=\"cell100 column1\">Closing time</th>
                                           </tr>
                                         </thead>
                                       </table>
@@ -258,8 +257,8 @@
                               while($row = $result->fetch_assoc()) {
                                 echo "<tr class=\"row100 body\">";
                                 echo "<td class=\"cell100 column1\">" .$row["Location"]. "</td>";
-                                echo "<td class=\"cell100 column2\">" . $row["opening_time"]. "</td>";
-                                echo "<td class=\"cell100 column3\">" . $row["closing_time"]. "</td>";
+                                echo "<td class=\"cell100 column1\">" . $row["opening_time"]. "</td>";
+                                echo "<td class=\"cell100 column1\">" . $row["closing_time"]. "</td>";
                                 echo "</tr>";
                               }
                               echo "</tbody>

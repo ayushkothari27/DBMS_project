@@ -22,10 +22,6 @@
     <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
 
     <!-- <link rel="stylesheet" href="../assets/css/bootstrap-select.less"> -->
-    <link rel="stylesheet" href="../assets/scss/style.css">
-    <link href="../assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
-
-
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../assets/css/normalize.css">
@@ -34,6 +30,8 @@
     <link rel="stylesheet" href="../assets/css/themify-icons.css">
     <link rel="stylesheet" href="../assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../assets/scss/style.css">
+    <link href="../assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -230,8 +228,10 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
-        <div class="col-md-3"></div>
-            <div class=" col-md-6">
+        <div class="col-md-12"></div>
+            <div class=" col-md-12">
+
+
 
                     <?php
                           include '../db_connection.php';
@@ -239,32 +239,45 @@
                           $conn = OpenCon();
                           $sql = "SELECT c.name as c_name,e.name as e_name,e.time,e.date,e.location FROM events AS e INNER JOIN committee AS c ON e.committee = c.name";
                           $result = $conn->query($sql);
-                          echo "<table border='1' style='margin:10px;'>
-                                <tr>
-                                <th>Event Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Location</th>
-                                <th>Committee</th>
-                                </tr>";
+                          echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
+                                <div class=\"table100-head\">
+                                      <table>
+                                        <thead>
+                                          <tr class=\"row100 head\">
+                                            <th class=\"cell100 column1\">Event Name</th>
+                                            <th class=\"cell100 column2\">Date</th>
+                                            <th class=\"cell100 column2\">Time</th>
+                                            <th class=\"cell100 column2\">Location</th>
+                                            <th class=\"cell100 column2\">Committee</th>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                    </div>";
 
 
                           if ($result->num_rows > 0) {
                               // output data of each row
-                              while($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" .$row["e_name"]. "</td>";
-                                echo "<td>" . $row["date"]. "</td>";
-                                echo "<td>" . $row["time"]. "</td>";
-                                echo "<td>" . $row["location"]. "</td>";
-                                echo "<td>" . $row["c_name"]. "</td>";
-                                echo "</tr>";
+                              echo "<div class=\"table100-body js-pscroll\">
+                                <table>
+                                  <tbody>";
+                                  while($row = $result->fetch_assoc()) {
+                                    echo "<tr class=\"row100 body\">";
+                                    echo "<td class=\"cell100 column1\">" .$row["e_name"]. "</td>";
+                                    echo "<td class=\"cell100 column2\">" .$row["date"]. "</td>";
+                                    echo "<td class=\"cell100 column2\">" .$row["time"]. "</td>";
+                                    echo "<td class=\"cell100 column2\">" . $row["location"]. "</td>";
+                                    echo "<td class=\"cell100 column2\">" . $row["c_name"]. "</td>";
+                                    echo "</tr>";
+                                  }
+                                  echo "</tbody>
+                                        </table>
+                                      </div>";
                               }
-                          } else {
-                              echo "0 results";
-                          }
-                          echo "</table>";
-                          CloseCon($conn);
+                              // else {
+                              //     echo "0 results";
+                              // }
+                              echo "</div>";
+                              CloseCon($conn);
                       ?>
             </div>
     </div>
@@ -305,7 +318,24 @@
             });
         })(jQuery);
     </script>
+    <script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="../read_tables/vendor/select2/select2.min.js"></script>
+  	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  	<script>
+  		$('.js-pscroll').each(function(){
+  			var ps = new PerfectScrollbar(this);
 
+  			$(window).on('resize', function(){
+  				ps.update();
+  			})
+  		});
+
+
+  	</script>
+  <!--===============================================================================================-->
+  	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>

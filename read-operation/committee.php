@@ -13,6 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../read_tables/css/main.css">
+
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -221,43 +229,54 @@
                 <h1 class="top-header">Dwakadas J. Sanghvi College of Engineering</h1>
             </div>
         </header>
-        <div class="col-md-3"></div>
-            <div class=" col-md-6">
-                
-                    <?php
-                          include '../db_connection.php';
+        <div class="col-md-12"></div>
+            <div class=" col-md-12">
+              <?php
+                    include '../db_connection.php';
+                    $conn = OpenCon();
+                    $sql = "SELECT * FROM seminarhall";
+                    $result = $conn->query($sql);
+                    echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px;width:100%;\">
+                          <div class=\"table100-head\">
+                                <table>
+                                  <thead>
+                                    <tr class=\"row100 head\">
+                                      <th class=\"cell100 column1\">Committee Name</th>
+                                      <th class=\"cell100 column2\">Incharge</th>
+                                      <th class=\"cell100 column2\">Description</th>
+                                      <th class=\"cell100 column2\">Number</th>
+                                    </tr>
+                                  </thead>
+                                </table>
+                              </div>";
 
-                          $conn = OpenCon();
-                          $sql = "SELECT * FROM committee";
-                          $result = $conn->query($sql);
-                          echo "<table border='1' style='margin:10px;'>
-                                <tr>
-                                <th>Committee Name</th>
-                                <th>Incharge</th>
-                                <th>Description</th>
-                                <th>Number</th>
-                                </tr>";
-
-                          if ($result->num_rows > 0) {
-                              // output data of each row
-                              while($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" .$row["name"]. "</td>";
-                                echo "<td>" . $row["incharge"]. "</td>";
-                                echo "<td>" . $row["description"]. "</td>";
-                                echo "<td>" . $row["number"]. "</td>";
-                                echo "</tr>";
-                              }
-                          } else {
-                              echo "0 results";
-                          }
-                          echo "</table>";
-                          CloseCon($conn);
-                    ?>
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        echo "<div class=\"table100-body js-pscroll\">
+                          <table>
+                            <tbody>";
+                        while($row = $result->fetch_assoc()) {
+                          echo "<tr class=\"row100 body\">";
+                          echo "<td class=\"cell100 column1\">" .$row["name"]. "</td>";
+                          echo "<td class=\"cell100 column2\">" . $row["incharge"]. "</td>";
+                          echo "<td class=\"cell100 column2\">" . $row["description"]. "</td>";
+                          echo "<td class=\"cell100 column2\">" . $row["number"]. "</td>";
+                          echo "</tr>";
+                        }
+                        echo "</tbody>
+                              </table>
+                            </div>";
+                    }
+                    // else {
+                    //     echo "0 results";
+                    // }
+                    echo "</div>";
+                    CloseCon($conn);
+              ?>
             </div>
     </div>
     <!-- .content -->
-    
+
     <!-- /#right-panel -->
 
     <!-- Right Panel -->
@@ -293,7 +312,24 @@
             });
         })(jQuery);
     </script>
+    <script src="../read_tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/popper.js"></script>
+  	<script src="../read_tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="../read_tables/vendor/select2/select2.min.js"></script>
+  	<script src="../read_tables/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  	<script>
+  		$('.js-pscroll').each(function(){
+  			var ps = new PerfectScrollbar(this);
 
+  			$(window).on('resize', function(){
+  				ps.update();
+  			})
+  		});
+
+
+  	</script>
+  <!--===============================================================================================-->
+  	<script src="../read_tables/js/main.js"></script>
 </body>
 
 </html>
