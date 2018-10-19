@@ -224,34 +224,12 @@
             </div>
         </header>
 
-        <div style="padding:20px;"></div>
         
         <div class="col-sm-7 fix">
                     <?php
                             include '../db_connection.php';
 
                             $conn = OpenCon();
-                            $sql = "SELECT * from person NATURAL JOIN faculty";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                // output data of each row
-                                while($row = $result->fetch_assoc()) {
-                                    echo "id: " .$row["sapid"].
-                                    " <br> Name: " . $row["name"].
-                                    " <br> Address:  " . $row["address"].
-                                    " <br> Phone:  " . $row["mobile"].
-                                    "<br>gender: ".$row["gender"].
-                                    "<br>dept: ".$row["dept"].
-                                    "<br>age: ".$row["age"].
-                                    "<br>dob: ".$row["dob"].
-                                    " <br> Salary: " . $row["salary"]
-                                    ;
-                                    // echo "id: " .$row["sapid"].
-                                    // " <br> Year of joining: " . $row["year_of_joining"] ;
-                                }
-                            } else {
-                                echo "0 results";
-                            }
                     ?>
                     <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
@@ -282,8 +260,16 @@
                                     <label for="text-input" class=" form-control-label">SAP ID</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="SAP ID" class="form-control">
-                                    <!-- <small class="form-text text-muted">This is a help text</small> -->
+                                <?php
+                                    $sql = "SELECT sapid FROM faculty";
+                                    $result = mysqli_query($conn, $sql);
+                                      echo '<select id="text-input" name="sapid" class="form-control">';
+                                      echo '<option disabled selected value>Select sapid of faculty</option>';
+                                      while($row = mysqli_fetch_array($result)) {
+                                        echo '<option value="'.$row['sapid'].'">'.$row['sapid'].'</option>';
+                                      }
+                                      echo "</select>";
+                                ?>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -291,7 +277,7 @@
                                     <label for="text-input" class=" form-control-label">First Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="First Name" class="form-control">
+                                    <input type="text" id="text-input" name="name" placeholder="First Name" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -304,20 +290,20 @@
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
-                            <div class="row form-group">
+                            <!-- <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="text-input" class=" form-control-label">Department</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="text-input" name="text-input" placeholder="Department" class="form-control">
+                                    <input type="text" id="text-input" name="dept" placeholder="Department" class="form-control">
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
@@ -326,7 +312,7 @@
                                     <label for="text-input" class=" form-control-label">Salary</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Salary" class="form-control">
+                                    <input type="number" id="text-input" name="salary" placeholder="Salary" class="form-control">
                                     <small class="help-block text-muted">Please enter monthly Salary</small>
                                 </div>
                             </div>
@@ -335,7 +321,7 @@
                                     <label for="select" class=" form-control-label">Gender</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <select name="select" id="select" class="form-control">
+                                    <select name="gender" id="select" class="form-control">
                                         <option value="0">Please select</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
@@ -348,7 +334,7 @@
                                     <label for="text-input" class=" form-control-label">Mobile No.</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" id="text-input" name="text-input" placeholder="Mobile No." class="form-control">
+                                    <input type="number" id="text-input" name="mobile" placeholder="Mobile No." class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -356,31 +342,60 @@
                                     <label for="cc-exp" class="control-label mb-1">Date of Birth</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date of birth" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
+                                    <input id="cc-exp" name="dob" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter your date of birth" data-val-cc-exp="Please enter a valid month and year" placeholder="DD / MM / YYYY" autocomplete="cc-exp">
                                     <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="textarea-input" class=" form-control-label">Address</label>
+                                    <label for="textarea-input"  class=" form-control-label">Address</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
+                                    <textarea name="textarea-input" name="address" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
                                 </div>
                             </div>
 
-                        </form>
+                        
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    <i class="fa fa-dot-circle-o"></i> Add
+                                <button type="submit" name="update" class="btn btn-primary btn-block">
+                                    <i class="fa fa-dot-circle-o"></i> Update
                                 </button>
                             </div>
                         </div>
                     </div>
+                </form>
+                <?php
+
+                if(isset($_POST['update'])){
+                    
+                    $sapid =  $_POST['sapid'];
+                    $name =  $_POST['name'];
+                    $salary =  $_POST['salary'];
+                    $dept =  $_POST['dept'];
+                    $gender =  $_POST['gender'];
+                    $mobile =  $_POST['mobile'];
+                    $dob =  $_POST['dob'];
+                    $address =  $_POST['address'];
+                    $sql = "UPDATE faculty SET salary='$salary' WHERE sapid=$sapid";
+                    $sql2 = "UPDATE person SET name='$name', gender='$gender', dob='$dob', mobile=$mobile, address='$address', dept='$dept', age=40 WHERE sapid=$sapid";
+
+                    if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
+
+                        echo "<div class=\"alert alert-success\">
+                        <strong>Success!</strong> Record updated successfully
+                    </div>";
+                    } else {
+                        echo "<div class=\"alert alert-danger\">
+                        <strong>Error: !</strong>    " . $sql . "<br>" . $conn->error."
+                    </div>";
+                    }
+                }
+                CloseCon($conn);
+                ?>
                 </div>
             </div>
         </div>
