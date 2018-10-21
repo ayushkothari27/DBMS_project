@@ -165,29 +165,13 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="menu-icon fa fa-search"></i>Search</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-search"></i>Search</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li>
-                                <i class="fa fa-puzzle-piece"></i>
-                                <a href="#">Faculty</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-id-badge"></i>
-                                <a href="#">Student</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-bars"></i>
-                                <a href="#">Committee</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-share-square-o"></i>
-                                <a href="#">Events</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-id-card-o"></i>
-                                <a href="#">Seminar Hall</a>
-                            </li>
+                          <li><i class="fa fa-puzzle-piece"></i><a href="./search-operation/faculty.php">Faculty</a></li>
+                          <li><i class="fa fa-id-badge"></i><a href="./search-operation/student.php">Student</a></li>
+                          <li><i class="fa fa-bars"></i><a href="./search-operation/committee.php">Committee</a></li>
+                          <li><i class="fa fa-share-square-o"></i><a href="./search-operation/events.php">Events</a></li>
+                          <li><i class="fa fa-id-card-o"></i><a href="./search-operation/seminarhall.php">Seminar Hall</a></li>
                         </ul>
                     </li>
 
@@ -195,7 +179,28 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="menu-icon fa fa-line-chart"></i>Charts</a>
-
+                            <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                    <i class="fa fa-puzzle-piece"></i>
+                                    <a href="../charts-operation/faculty.php">Faculty</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-id-badge"></i>
+                                    <a href="../charts-operation/student.php">Student</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-bars"></i>
+                                    <a href="../charts-operation/committee.php">Committee</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-share-square-o"></i>
+                                    <a href="../charts-operation/events.php">Events</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-id-card-o"></i>
+                                    <a href="../charts-operation/seminarhall.php">Seminar Hall</a>
+                                </li>
+                            </ul>
                     </li>
 
                 </ul>
@@ -208,30 +213,7 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
-<?php
-    include '../db_connection.php';
-    
-    $conn = OpenCon();
-    if(isset($_POST['add'])){
-        $sapid =  $_POST['sap'];
-        $name =  $_POST['name'];
-        $dept =  $_POST['dept'];
-        $salary =  $_POST['salary'];
-        $gender =  $_POST['gender'];
-        $mobile = $_POST['mobile'];
-        $dob = $_POST['dob1'];
-        $address = $_POST['address'];
-        $age = 34;
-        $sql = "INSERT INTO person VALUES ('$sapid','$name','$gender','$dob','$mobile','$address','$dept','$age')";
-        $sql1 = "INSERT INTO faculty VALUES ('$sapid','$salary')";
-        if (($conn->query($sql)) && ($conn->query($sql1)) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    CloseCon($conn);
-?>
+
     <div id="right-panel" class="right-panel">
         <header id="header" class="header">
 
@@ -249,6 +231,36 @@
         <div class="row" style="margin:auto;">
             <div class="col-md-3"></div>
             <div class=" col-md-6">
+                <?php
+    include '../db_connection.php';
+    
+    $conn = OpenCon();
+    if(isset($_POST['add'])){
+        $sapid =  $_POST['sap'];
+        $name =  $_POST['name'];
+        $dept =  $_POST['dept'];
+        $salary =  $_POST['salary'];
+        $gender =  $_POST['gender'];
+        $mobile = $_POST['mobile'];
+        $dob = $_POST['dob1'];
+        $address = $_POST['address'];
+        $age = 34;
+        $triggerquery = "CREATE TRIGGER mobile AFTER INSERT ON person FOR EACH ROW SET NEW.code=91 ;";
+        $conn->query($triggerquery);  
+        $sql = "INSERT INTO person VALUES ('$sapid','$name','$gender','$dob','$mobile','$address','$dept','$age', 91)";
+        $sql1 = "INSERT INTO faculty VALUES ('$sapid','$salary')";
+
+        if (($conn->query($sql)) && ($conn->query($sql1)) === TRUE) {
+            echo "<div class=\"alert alert-success\">
+                        <strong>Success!</strong> Record added successfully
+                    </div>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+          
+    }
+    CloseCon($conn);
+?>
                 <div class="card">
                     <div class="card-header">
                         Add
@@ -291,14 +303,14 @@
                                     <!-- <small class="form-text text-muted">This is a help text</small> -->
                                 </div>
                             </div>
-                            <div class="row form-group">
+                            <!-- <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="email" id="email-input" name="email-input" placeholder="Sort" class="form-control">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="text-input" class=" form-control-label">Department</label>

@@ -235,7 +235,7 @@
                     <?php
                           include '../db_connection.php';
                           $conn = OpenCon();
-                          $sql = "SELECT * FROM seminarhall";
+                          $sql = "SELECT * FROM `xyz`";
                           $result = $conn->query($sql);
                           echo "<div class=\"table100 ver3 m-b-110\" style=\"margin-top:20px\">
                                 <div class=\"table100-head\">
@@ -249,12 +249,11 @@
                                         </thead>
                                       </table>
                                     </div>";
-
                           if ($result->num_rows > 0) {
                               // output data of each row
                               echo "<div class=\"table100-body js-pscroll\">
-                    						<table>
-                    							<tbody>";
+                                            <table>
+                                                <tbody>";
                               while($row = $result->fetch_assoc()) {
                                 echo "<tr class=\"row100 body\">";
                                 echo "<td class=\"cell100 column1\">" .$row["Location"]. "</td>";
@@ -263,8 +262,8 @@
                                 echo "</tr>";
                               }
                               echo "</tbody>
-                        						</table>
-                        					</div>";
+                                                </table>
+                                            </div>";
                           }
                           // else {
                           //     echo "0 results";

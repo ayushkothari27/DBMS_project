@@ -331,7 +331,6 @@
                       //     echo "0 results";
                       // }
                       echo "</div>";
-                      CloseCon($conn);
               }
               else{
                 echo "<form action=\"events.php\" method=\"post\">

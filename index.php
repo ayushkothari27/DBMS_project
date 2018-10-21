@@ -76,39 +76,61 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pencil"></i>Update</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="fa fa-puzzle-piece"></i><a href="#">Faculty</a></li>
-                          <li><i class="fa fa-id-badge"></i><a href="#">Student</a></li>
-                          <li><i class="fa fa-bars"></i><a href="#">Committee</a></li>
-                          <li><i class="fa fa-share-square-o"></i><a href="#">Events</a></li>
-                          <li><i class="fa fa-id-card-o"></i><a href="#">Seminar Hall</a></li>
+                          <li><i class="fa fa-puzzle-piece"></i><a href="./update-operation/faculty.php">Faculty</a></li>
+                          <li><i class="fa fa-id-badge"></i><a href="./update-operation/student.php">Student</a></li>
+                          <li><i class="fa fa-bars"></i><a href="./update-operation/committee.php">Committee</a></li>
+                          <li><i class="fa fa-share-square-o"></i><a href="./update-operation/events.php">Events</a></li>
+                          <li><i class="fa fa-id-card-o"></i><a href="./update-operation/seminarhall.php">Seminar Hall</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-trash"></i>Delete</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="fa fa-puzzle-piece"></i><a href="#">Faculty</a></li>
-                          <li><i class="fa fa-id-badge"></i><a href="#">Student</a></li>
-                          <li><i class="fa fa-bars"></i><a href="#">Committee</a></li>
-                          <li><i class="fa fa-share-square-o"></i><a href="#">Events</a></li>
-                          <li><i class="fa fa-id-card-o"></i><a href="#">Seminar Hall</a></li>
+                          <li><i class="fa fa-puzzle-piece"></i><a href="./delete-operation/faculty.php">Faculty</a></li>
+                          <li><i class="fa fa-id-badge"></i><a href="./delete-operation/student.php">Student</a></li>
+                          <li><i class="fa fa-bars"></i><a href="./delete-operation/committee.php">Committee</a></li>
+                          <li><i class="fa fa-share-square-o"></i><a href="./delete-operation/events.php">Events</a></li>
+                          <li><i class="fa fa-id-card-o"></i><a href="./delete-operation/seminarhall.php">Seminar Hall</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-search"></i>Search</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="fa fa-puzzle-piece"></i><a href="#">Faculty</a></li>
-                          <li><i class="fa fa-id-badge"></i><a href="#">Student</a></li>
-                          <li><i class="fa fa-bars"></i><a href="#">Committee</a></li>
-                          <li><i class="fa fa-share-square-o"></i><a href="#">Events</a></li>
-                          <li><i class="fa fa-id-card-o"></i><a href="#">Seminar Hall</a></li>
+                          <li><i class="fa fa-puzzle-piece"></i><a href="./search-operation/faculty.php">Faculty</a></li>
+                          <li><i class="fa fa-id-badge"></i><a href="./search-operation/student.php">Student</a></li>
+                          <li><i class="fa fa-bars"></i><a href="./search-operation/committee.php">Committee</a></li>
+                          <li><i class="fa fa-share-square-o"></i><a href="./search-operation/events.php">Events</a></li>
+                          <li><i class="fa fa-id-card-o"></i><a href="./search-operation/seminarhall.php">Seminar Hall</a></li>
                         </ul>
                     </li>
 
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-line-chart"></i>Charts</a>
-
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="menu-icon fa fa-line-chart"></i>Charts</a>
+                            <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                    <i class="fa fa-puzzle-piece"></i>
+                                    <a href="./charts-operation/faculty.php">Faculty</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-id-badge"></i>
+                                    <a href="./charts-operation/student.php">Student</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-bars"></i>
+                                    <a href="./charts-operation/committee.php">Committee</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-share-square-o"></i>
+                                    <a href="./charts-operation/events.php">Events</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-id-card-o"></i>
+                                    <a href="./charts-operation/seminarhall.php">Seminar Hall</a>
+                                </li>
+                            </ul>
                     </li>
 
                 </ul>
@@ -154,7 +176,6 @@
     <script>
         ( function ( $ ) {
             "use strict";
-
             jQuery( '#vmap' ).vectorMap( {
                 map: 'world_en',
                 backgroundColor: null,

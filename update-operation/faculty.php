@@ -228,8 +228,13 @@
         <div class="col-sm-7 fix">
                     <?php
                             include '../db_connection.php';
+                      
+                            if(isset($_POST['increment'])){
+                                $sql = "CALL salaryIncrement('$emp')";
+                                $result = mysqli_query($conn, $sql);
+                            }
 
-                            $conn = OpenCon();
+                                                    $conn = OpenCon();
                     ?>
                     <!-- <a id="menuToggle" class="menutoggle pull-left">
                         <i class="fa fa fa-tasks"></i>
@@ -348,10 +353,10 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="textarea-input"  class=" form-control-label">Address</label>
+                                    <label for="textarea-input" name="" class=" form-control-label">Address</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <textarea name="textarea-input" name="address" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
+                                    <textarea  name="address" id="textarea-input" rows="9" placeholder="Full address" class="form-control"></textarea>
                                 </div>
                             </div>
 
@@ -363,6 +368,15 @@
                             <div class="col-md-6" style="text-align: center;">
                                 <button type="submit" name="update" class="btn btn-primary btn-block">
                                     <i class="fa fa-dot-circle-o"></i> Update
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6" style="text-align: center;">
+                                <button type="" onclick="increment()" class="btn btn-primary btn-block">
+                                    <i class="fa fa-dot-circle-o"></i> Update Salary
                                 </button>
                             </div>
                         </div>
@@ -437,6 +451,9 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+       function increment() {
+            alert('salary incremented by 10%');
+        }
     </script>
 
 </body>
